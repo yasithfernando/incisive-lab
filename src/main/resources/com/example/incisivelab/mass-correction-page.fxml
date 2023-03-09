@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1178.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.incisivelab.MassCorrectionPageController">
+   <children>
+      <TableView fx:id="massCorrectionTable" layoutX="107.0" layoutY="61.0" prefHeight="258.0" prefWidth="964.0">
+         <columns>
+            <TableColumn prefWidth="62.0" text="Sample">
+               <cellValueFactory>
+                  <PropertyValueFactory property="sampleName" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Monomer 14 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="monomer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Dimer 28 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="dimer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Trimer 42 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="trimer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Tretramer 56 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="tretramer" />
+               </cellValueFactory>
+            </TableColumn>
+             <TableColumn prefWidth="180.0" text="Total Protein">
+                 <cellValueFactory>
+                     <PropertyValueFactory property="totalProtein" />
+                 </cellValueFactory>
+             </TableColumn>
+         </columns>
+      </TableView>
+      <Button fx:id="resetBtn" layoutX="551.0" layoutY="654.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="RESET" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="nextBtn" layoutX="689.0" layoutY="654.0" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="NEXT" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="backBtn" layoutX="413.0" layoutY="654.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="BACK" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="normalisedToDilutionTable" layoutX="107.0" layoutY="381.0" prefHeight="258.0" prefWidth="964.0">
+         <columns>
+            <TableColumn prefWidth="62.0" text="Sample">
+               <cellValueFactory>
+                  <PropertyValueFactory property="sampleName" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Monomer 14 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="monomer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Dimer 28 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="dimer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Trimer 42 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="trimer" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="180.0" text="Tretramer 56 kDa">
+               <cellValueFactory>
+                  <PropertyValueFactory property="tretramer" />
+               </cellValueFactory>
+            </TableColumn>
+             <TableColumn prefWidth="180.0" text="Total">
+                 <cellValueFactory>
+                     <PropertyValueFactory property="total" />
+                 </cellValueFactory>
+             </TableColumn>
+         </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="107.0" layoutY="20.0" prefHeight="41.0" prefWidth="190.0" style="-fx-background-color: #0091fa;" text="Mass Correction" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="107.0" layoutY="340.0" prefHeight="41.0" prefWidth="190.0" style="-fx-background-color: #0091fa;" text="Normalised To Dilution" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Pane layoutX="1080.0" layoutY="548.0" style="-fx-background-color: e3e3e3;">
+         <children>
+            <Label text="ug" />
+            <Label layoutX="26.0" text="Dilutions" />
+            <Label layoutX="26.0" layoutY="25.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.025" />
+            <Label layoutX="1.0" layoutY="25.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="1" />
+            <Label layoutX="26.0" layoutY="50.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.05" />
+            <Label layoutX="1.0" layoutY="50.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="2" />
+            <Label layoutX="26.0" layoutY="75.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.1" />
+            <Label layoutX="1.0" layoutY="75.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="4" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

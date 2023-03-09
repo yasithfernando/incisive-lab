@@ -88,7 +88,14 @@ public class LaneContentsPageController {
 
     }
 
-    public void onNextButtonClick(ActionEvent actionEvent) {
+    public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
+
+        //Set the stage with the new scene
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
 
     }
 
