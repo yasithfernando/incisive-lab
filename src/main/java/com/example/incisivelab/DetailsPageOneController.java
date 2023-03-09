@@ -2,7 +2,15 @@ package com.example.incisivelab;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static com.example.incisivelab.HelloApplication.stage;
 
 public class DetailsPageOneController {
     public TextField txtTitle;
@@ -27,8 +35,15 @@ public class DetailsPageOneController {
         System.out.println("Reset Button Clicked!");
     }
     @FXML
-    public void onNextButtonClick(ActionEvent actionEvent) {
+    public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
         //TODO Validate Form Details and Navigate
         System.out.println("Next Button Click");
+        FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("details-page-two.fxml"));
+
+        //Set the stage with the new scene
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
     }
 }
