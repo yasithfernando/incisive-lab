@@ -8,6 +8,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class MassCorrectionPageController {
 
     public Button resetBtn;
@@ -27,7 +31,8 @@ public class MassCorrectionPageController {
         calculateMassCorrection(RawDataPageController.finalisedRawDataTable);
 
         //Calculate Normalised To Dilution Data
-
+        BigDecimal dilutionFactor = BigDecimal.valueOf(0.025);
+        normaliseToDilution(massCorrectionTable, dilutionFactor);
 
         // Add some sample data to the table
 //        RawDataPageController.RawData sample1 = new RawDataPageController.RawData("TS D3",22033.898, 14276.46, 2803.54, 1470.62);
@@ -38,11 +43,10 @@ public class MassCorrectionPageController {
         try {
             for (int i = 0; i < rawDataTable.getItems().size(); i++){
                 String sampleName = rawDataTable.getItems().get(i).getSampleName();
-                double monomer = rawDataTable.getItems().get(i).getMonomer();
-                double dimer = rawDataTable.getItems().get(i).getDimer()/2;
-                double trimer = rawDataTable.getItems().get(i).getTrimer()/3;
-                double tretramer = rawDataTable.getItems().get(i).getTretramer()/4;
-                double totalProtein = monomer + dimer + trimer + tretramer;
+                BigDecimal monomer = doubleFormatter(BigDecimal.valueOf(rawDataTable.getItems().get(i).getMonomer()));
+                BigDecimal dimer = doubleFormatter(BigDecimal.valueOf(rawDataTable.getItems().get(i).getDimer()/2));
+                BigDecimal trimer = doubleFormatter(BigDecimal.valueOf(rawDataTable.getItems().get(i).getTrimer()/3));
+                BigDecimal tretramer = doubleFormatter(BigDecimal.valueOf(rawDataTable.getItems().get(i).getTretramer()/4));
 
                 MassCorrectionData dataRow = new MassCorrectionData(sampleName,monomer,dimer,trimer,tretramer);
                 massCorrectionTable.getItems().add(dataRow);
@@ -53,27 +57,31 @@ public class MassCorrectionPageController {
 
     }
 
-    public void normaliseToDilution(TableView<RawDataPageController.RawData> rawDataTable, double dilutionFactor){
+    public void normaliseToDilution(TableView<MassCorrectionData> massCorrectionDataTable, BigDecimal dilutionFactor){
         //TODO Confirm Usage of Dilution Factor
-//        try {
-//            int counter = 0;
-//            for (int i = 0; i < rawDataTable.getItems().size(); i++){
-//                if (counter)
-//                counter++;
-//                String sampleName = rawDataTable.getItems().get(i).getSampleName();
-//                double monomer = rawDataTable.getItems().get(i).getMonomer();
-//                double dimer = rawDataTable.getItems().get(i).getDimer()/2;
-//                double trimer = rawDataTable.getItems().get(i).getTrimer()/3;
-//                double tretramer = rawDataTable.getItems().get(i).getTretramer()/4;
-//                double totalProtein = monomer + dimer + trimer + tretramer;
-//
-//                MassCorrectionData dataRow = new MassCorrectionData(sampleName,monomer,dimer,trimer,tretramer);
-//                massCorrectionTable.getItems().add(dataRow);
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        for (int i = 0; i < massCorrectionDataTable.getItems().size(); i++) {
+            String sampleName = massCorrectionDataTable.getItems().get(i).getSampleName();
+            BigDecimal monomer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getMonomer().divide(dilutionFactor, RoundingMode.HALF_EVEN));
+            BigDecimal dimer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getDimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+            BigDecimal trimer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getTrimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+            BigDecimal tretramer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getTretramer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
 
+            NormalisedToDilutionData dataRow = new NormalisedToDilutionData(sampleName,monomer,dimer,trimer,tretramer);
+            normalisedToDilutionTable.getItems().add(dataRow);
+        }
+
+    }
+
+    private BigDecimal doubleFormatter(BigDecimal value){
+
+        // Create a DecimalFormat object with a pattern that formats values to two decimal points
+        DecimalFormat df = new DecimalFormat("#.###");
+
+        // Use the DecimalFormat object to format the value
+        String formattedValue = df.format(value);
+
+        // Convert the formatted value back to a double and return
+        return BigDecimal.valueOf(Double.parseDouble(formattedValue));
     }
 
     public void initialiseMassCorrectionTable(){
@@ -139,19 +147,19 @@ public class MassCorrectionPageController {
 
     public static class MassCorrectionData{
         private String sampleName;
-        private double monomer;
-        private double dimer;
-        private double trimer;
-        private double tretramer;
-        private double totalProtein;
+        private BigDecimal monomer;
+        private BigDecimal dimer;
+        private BigDecimal trimer;
+        private BigDecimal tretramer;
+        private BigDecimal totalProtein;
 
-        public MassCorrectionData(String sampleName, double monomer, double dimer, double trimer, double tretramer) {
+        public MassCorrectionData(String sampleName, BigDecimal monomer, BigDecimal dimer, BigDecimal trimer, BigDecimal tretramer) {
             this.sampleName = sampleName;
             this.monomer = monomer;
             this.dimer = dimer;
             this.trimer = trimer;
             this.tretramer = tretramer;
-            this.totalProtein = monomer + dimer + trimer + tretramer;
+            this.totalProtein = monomer.add(dimer).add(trimer).add(tretramer);
         }
 
         public String getSampleName() {
@@ -162,62 +170,62 @@ public class MassCorrectionPageController {
             this.sampleName = sampleName;
         }
 
-        public double getMonomer() {
+        public BigDecimal getMonomer() {
             return monomer;
         }
 
-        public void setMonomer(double monomer) {
+        public void setMonomer(BigDecimal monomer) {
             this.monomer = monomer;
         }
 
-        public double getDimer() {
+        public BigDecimal getDimer() {
             return dimer;
         }
 
-        public void setDimer(double dimer) {
+        public void setDimer(BigDecimal dimer) {
             this.dimer = dimer;
         }
 
-        public double getTrimer() {
+        public BigDecimal getTrimer() {
             return trimer;
         }
 
-        public void setTrimer(double trimer) {
+        public void setTrimer(BigDecimal trimer) {
             this.trimer = trimer;
         }
 
-        public double getTretramer() {
+        public BigDecimal getTretramer() {
             return tretramer;
         }
 
-        public void setTretramer(double tretramer) {
+        public void setTretramer(BigDecimal tretramer) {
             this.tretramer = tretramer;
         }
 
-        public double getTotalProtein() {
+        public BigDecimal getTotalProtein() {
             return totalProtein;
         }
 
-        public void setTotalProtein(double totalProtein) {
+        public void setTotalProtein(BigDecimal totalProtein) {
             this.totalProtein = totalProtein;
         }
     }
 
     public static class NormalisedToDilutionData{
         private String sampleName;
-        private double monomer;
-        private double dimer;
-        private double trimer;
-        private double tretramer;
-        private double total;
+        private BigDecimal monomer;
+        private BigDecimal dimer;
+        private BigDecimal trimer;
+        private BigDecimal tretramer;
+        private BigDecimal total;
 
-        public NormalisedToDilutionData(String sampleName, double monomer, double dimer, double trimer, double tretramer) {
+        public NormalisedToDilutionData(String sampleName, BigDecimal monomer, BigDecimal dimer, BigDecimal trimer, BigDecimal tretramer) {
             this.sampleName = sampleName;
             this.monomer = monomer;
             this.dimer = dimer;
             this.trimer = trimer;
             this.tretramer = tretramer;
-            this.total = monomer + dimer + trimer + tretramer;
+            this.total = monomer.add(dimer).add(trimer).add(tretramer);
         }
 
         public String getSampleName() {
@@ -228,43 +236,43 @@ public class MassCorrectionPageController {
             this.sampleName = sampleName;
         }
 
-        public double getMonomer() {
+        public BigDecimal getMonomer() {
             return monomer;
         }
 
-        public void setMonomer(double monomer) {
+        public void setMonomer(BigDecimal monomer) {
             this.monomer = monomer;
         }
 
-        public double getDimer() {
+        public BigDecimal getDimer() {
             return dimer;
         }
 
-        public void setDimer(double dimer) {
+        public void setDimer(BigDecimal dimer) {
             this.dimer = dimer;
         }
 
-        public double getTrimer() {
+        public BigDecimal getTrimer() {
             return trimer;
         }
 
-        public void setTrimer(double trimer) {
+        public void setTrimer(BigDecimal trimer) {
             this.trimer = trimer;
         }
 
-        public double getTretramer() {
+        public BigDecimal getTretramer() {
             return tretramer;
         }
 
-        public void setTretramer(double tretramer) {
+        public void setTretramer(BigDecimal tretramer) {
             this.tretramer = tretramer;
         }
 
-        public double getTotal() {
+        public BigDecimal getTotal() {
             return total;
         }
 
-        public void setTotalProtein(double total) {
+        public void setTotal(BigDecimal total) {
             this.total = total;
         }
     }
