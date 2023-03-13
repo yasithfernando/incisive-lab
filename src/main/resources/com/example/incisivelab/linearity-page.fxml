@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.incisivelab.LinearityPageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.incisivelab.LinearityPageController">
+   <children>
+      <LineChart alternativeColumnFillVisible="true" layoutX="14.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
+        <xAxis>
+          <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <TableView layoutX="14.0" layoutY="52.0" prefHeight="200.0" prefWidth="950.0">
+        <columns>
+          <TableColumn prefWidth="250.0" text="Protein concentration (mg/mL)" />
+          <TableColumn minWidth="0.0" prefWidth="700.0" text="Band intensity (AUC)">
+               <columns>
+                  <TableColumn prefWidth="175.0" text="TS Rep 1 Gel 1" />
+                  <TableColumn prefWidth="175.0" text="TS Rep 2 Gel 1" />
+                  <TableColumn prefWidth="175.0" text="TS Rep 3 Gel 1" />
+                  <TableColumn prefWidth="175.0" text="RS Rep 1 Gel 1" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <LineChart alternativeColumnFillVisible="true" layoutX="14.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
+         <xAxis>
+            <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart alternativeColumnFillVisible="true" layoutX="561.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
+         <xAxis>
+            <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <CategoryAxis layoutX="448.0" layoutY="1.0" side="BOTTOM" />
+      <LineChart alternativeColumnFillVisible="true" layoutX="561.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
+         <xAxis>
+            <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <Button fx:id="resetBtn" layoutX="478.0" layoutY="754.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="RESET" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="nextBtn" layoutX="565.0" layoutY="754.0" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="NEXT" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="backBtn" layoutX="392.0" layoutY="754.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #0091FF;" text="BACK" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="12.0" prefHeight="41.0" prefWidth="338.0" style="-fx-background-color: #0091fa;" text="Linearity" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
