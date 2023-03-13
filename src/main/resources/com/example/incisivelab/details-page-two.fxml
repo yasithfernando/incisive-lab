@@ -45,9 +45,9 @@
                         <Label layoutX="11.0" layoutY="175.0" text="Volume of 2X R-SOB (uL)" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="1.0" layoutY="202.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
                         <Label layoutX="2.0" layoutY="207.0" prefHeight="32.0" prefWidth="186.0" text="Final Concentration (mg/mL)" textAlignment="CENTER" wrapText="true" />
-                        <TextField fx:id="tssfTotalVolumeTxt" layoutX="188.0" layoutY="82.0" prefHeight="40.0" prefWidth="189.0" />
+                        <TextField fx:id="tssfTotalVolumeTxt" editable="false" layoutX="188.0" layoutY="82.0" prefHeight="40.0" prefWidth="189.0" text="1000" />
                         <TextField fx:id="tssfFinalConcentrationTxt" layoutX="188.0" layoutY="201.0" prefHeight="41.0" prefWidth="189.0" />
-                        <TextField fx:id="tssfEstimatedConcentrationOfTestSampleTxt" layoutX="188.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />
+                        <TextField fx:id="tssfEstimatedConcentrationOfTestSampleTxt" layoutX="188.0" layoutY="42.0" onAction="#tssfFieldsUpdate" prefHeight="40.0" prefWidth="189.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="189.0" layoutY="123.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
                         <Label fx:id="tssfVolumeOfSampleLabel" layoutX="206.0" layoutY="136.0" prefHeight="16.0" prefWidth="149.0" textAlignment="CENTER" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="189.0" layoutY="162.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
@@ -68,9 +68,9 @@
                         <Label layoutX="11.0" layoutY="175.0" text="Volume of 2X R-SOB (uL)" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="1.0" layoutY="202.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
                         <Label layoutX="2.0" layoutY="207.0" prefHeight="32.0" prefWidth="186.0" text="Final Concentration (mg/mL)" textAlignment="CENTER" wrapText="true" />
-                        <TextField fx:id="rssfTotalVolumeTxt" layoutX="188.0" layoutY="81.0" prefHeight="40.0" prefWidth="189.0" />
+                        <TextField fx:id="rssfTotalVolumeTxt" layoutX="188.0" layoutY="81.0" prefHeight="40.0" prefWidth="189.0" text="1000" />
                         <TextField fx:id="rssfFinalConcentrationTxt" layoutX="188.0" layoutY="201.0" prefHeight="41.0" prefWidth="189.0" />
-                        <TextField fx:id="rssfConcentrationOfRefernceStndardTxt" layoutX="188.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />
+                        <TextField fx:id="rssfConcentrationOfRefernceStndardTxt" layoutX="188.0" layoutY="42.0" onAction="#rssfFieldsUpdate" prefHeight="40.0" prefWidth="189.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="189.0" layoutY="122.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
                         <Label fx:id="rssfVolumeOfSampleLabel" layoutX="206.0" layoutY="135.0" prefHeight="16.0" prefWidth="149.0" textAlignment="CENTER" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="189.0" layoutY="161.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="187.0" />
