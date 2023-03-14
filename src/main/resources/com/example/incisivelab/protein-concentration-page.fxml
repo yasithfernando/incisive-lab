@@ -24,27 +24,27 @@
                <columns>
                   <TableColumn prefWidth="100.0" text="ug">
                      <cellValueFactory>
-                        <PropertyValueFactory property="sampleName" />
+                        <PropertyValueFactory property="concentration" />
                      </cellValueFactory>
                   </TableColumn>
                   <TableColumn prefWidth="239.0" text="TS Rep 1">
                      <cellValueFactory>
-                        <PropertyValueFactory property="monomer" />
+                        <PropertyValueFactory property="tsRepOne" />
                      </cellValueFactory>
                   </TableColumn>
                   <TableColumn prefWidth="239.0" text="TS Rep 2">
                      <cellValueFactory>
-                        <PropertyValueFactory property="dimer" />
+                        <PropertyValueFactory property="tsRepTwo" />
                      </cellValueFactory>
                   </TableColumn>
                   <TableColumn prefWidth="239.0" text="TS Rep 3">
                      <cellValueFactory>
-                        <PropertyValueFactory property="trimer" />
+                        <PropertyValueFactory property="tsRepThree" />
                      </cellValueFactory>
                   </TableColumn>
                   <TableColumn prefWidth="239.0" text="RS Rep 1">
                      <cellValueFactory>
-                        <PropertyValueFactory property="tretramer" />
+                        <PropertyValueFactory property="rsRepOne" />
                      </cellValueFactory>
                   </TableColumn>
                </columns>
