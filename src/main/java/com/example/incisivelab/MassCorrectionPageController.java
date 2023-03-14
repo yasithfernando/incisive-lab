@@ -67,16 +67,33 @@ public class MassCorrectionPageController {
     public void normaliseToDilution(TableView<MassCorrectionData> massCorrectionDataTable, BigDecimal dilutionFactor){
         //TODO Confirm Usage of Dilution Factor
         for (int i = 0; i < massCorrectionDataTable.getItems().size(); i++) {
-            String sampleName = massCorrectionDataTable.getItems().get(i).getSampleName();
-            BigDecimal monomer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getMonomer().divide(dilutionFactor, RoundingMode.HALF_EVEN));
-            BigDecimal dimer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getDimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
-            BigDecimal trimer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getTrimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
-            BigDecimal tretramer = doubleFormatter(massCorrectionDataTable.getItems().get(i).getTretramer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+            if (i == 0 || i == 3 ||i == 6 || i == 9){
+                dilutionFactor = BigDecimal.valueOf(0.025);
+                mapMassDataToDilutionData(massCorrectionDataTable.getItems().get(i),dilutionFactor);
+            }
+            else if (i == 1 || i == 4 ||i == 7 || i == 10){
+                dilutionFactor = BigDecimal.valueOf(0.05);
+                mapMassDataToDilutionData(massCorrectionDataTable.getItems().get(i),dilutionFactor);
+            }
+            else if (i == 2 || i == 5 ||i == 8 || i == 11){
+                dilutionFactor = BigDecimal.valueOf(0.1);
+                mapMassDataToDilutionData(massCorrectionDataTable.getItems().get(i),dilutionFactor);
+            }
 
-            NormalisedToDilutionData dataRow = new NormalisedToDilutionData(sampleName,monomer,dimer,trimer,tretramer);
-            normalisedToDilutionTable.getItems().add(dataRow);
+
         }
 
+    }
+
+    private void mapMassDataToDilutionData(MassCorrectionData dataRow, BigDecimal dilutionFactor){
+        String sampleName = dataRow.getSampleName();
+        BigDecimal monomer = doubleFormatter(dataRow.getMonomer().divide(dilutionFactor, RoundingMode.HALF_EVEN));
+        BigDecimal dimer = doubleFormatter(dataRow.getDimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+        BigDecimal trimer = doubleFormatter(dataRow.getTrimer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+        BigDecimal tretramer = doubleFormatter(dataRow.getTretramer().divide(dilutionFactor,RoundingMode.HALF_EVEN));
+
+        NormalisedToDilutionData mappedDataRow = new NormalisedToDilutionData(sampleName,monomer,dimer,trimer,tretramer);
+        normalisedToDilutionTable.getItems().add(mappedDataRow);
     }
 
     private BigDecimal doubleFormatter(BigDecimal value){

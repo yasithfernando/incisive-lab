@@ -52,11 +52,24 @@ public class RawDataPageController {
         tretramerColumn.setCellValueFactory(new PropertyValueFactory<>("tretramer"));
         tretramerColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 
-//        laneContentsTable.getColumns().addAll(sampleNameCol, dilutionFactorCol, standardCurveConcentrationCol);
+        addSampleData();
+    }
 
+    private void addSampleData() {
         // Add some sample data to the table
-        RawDataPageController.RawData sample1 = new RawDataPageController.RawData("TS D3",22033.898, 14276.46, 2803.54, 1470.62);
-        rawDataTable.getItems().add(sample1);
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D3",22033.898, 14276.46, 2803.54, 1470.62));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D2",39888.63, 28092.94, 4658.97, 1928.539));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D1",62363.19,54456.53,10109.53,4269.05));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D3",22459.33,13955.56,3358.20,2573.49));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D2",37795.12,27066.38,4721.10,2733.90));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D1",62665.48,53016.58,10025.82,4350.19));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D3",17195.26,16472.56,3116.54,1927.15));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D2",37297.33,28494.63,5440.63,3169.32));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("TS D1",65684.06,55832.84,9938.89,4723.19));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("RS D3",20406.38,11704.61,3135.35,2528.47));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("RS D2",35432.66,23007.36,5842.53,2758.81));
+        rawDataTable.getItems().add(new RawDataPageController.RawData("RS D1",59902.75,43333.80,11136.84,6217.63));
+
     }
 
     public void addRow(ActionEvent actionEvent) {
