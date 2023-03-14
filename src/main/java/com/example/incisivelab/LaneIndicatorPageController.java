@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class LaneIndicatorPageController {
@@ -39,22 +40,25 @@ public class LaneIndicatorPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        HelloApplication.backNavigation = false;
         if (gelImageViewer.getImage() == null){
             JOptionPane.showMessageDialog(buttonPanel, "Please Upload an image of the gel run");
         }
         else {
-        FXMLLoader fxmlLoader = new FXMLLoader(RawDataPageController.class.getResource("raw-data-page.fxml"));
+            details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setGelImage(gelImageViewer.getImage());
+            FXMLLoader fxmlLoader = new FXMLLoader(RawDataPageController.class.getResource("raw-data-page.fxml"));
 
-        //Set the stage with the new scene
-        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
-        stage.setTitle("Incisive Lab");
-        stage.setScene(scene);
-        stage.show();
+            //Set the stage with the new scene
+            Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+            stage.setTitle("Incisive Lab");
+            stage.setScene(scene);
+            stage.show();
         }
 
     }
 
     public void onBackButtonClick(ActionEvent actionEvent) throws IOException {
+        HelloApplication.backNavigation = true;
         FXMLLoader fxmlLoader = new FXMLLoader(LaneContentsPageController.class.getResource("lane-contents-page.fxml"));
 
         //Set the stage with the new scene

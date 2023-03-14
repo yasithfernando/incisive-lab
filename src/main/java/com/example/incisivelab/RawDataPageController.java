@@ -14,6 +14,7 @@ import javafx.util.converter.DoubleStringConverter;
 import javax.swing.*;
 import java.io.IOException;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class RawDataPageController {
@@ -124,7 +125,14 @@ public class RawDataPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        HelloApplication.backNavigation = false;
+        /*added finalisedRawDataTable object inorder to handle static limitation on original table.
+        * TLDR - don't change this line :D*/
         finalisedRawDataTable = rawDataTable;
+
+        //Add Raw Data Table to Gel Run object
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setRawDataTableView(finalisedRawDataTable);
+
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("mass-correction-page.fxml"));
 
         //Set the stage with the new scene
@@ -135,6 +143,7 @@ public class RawDataPageController {
     }
 
     public void onBackButtonClick(ActionEvent actionEvent) throws IOException {
+        HelloApplication.backNavigation = true;
         FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
 
         //Set the stage with the new scene

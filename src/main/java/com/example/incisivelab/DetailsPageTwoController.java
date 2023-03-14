@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.io.IOException;
 
-import static com.example.incisivelab.DetailsPageOneController.bovine_or_globin;
 import static com.example.incisivelab.HelloApplication.*;
 
 public class DetailsPageTwoController {
@@ -75,6 +74,7 @@ public class DetailsPageTwoController {
     }
 
     public void onNextButtonClick() throws IOException {
+        backNavigation = false;
         details.dilutionTableTestSampleVolumeOfSample_text = Double.valueOf(dilutionTableTestSampleVolumeOfSampleTxt.getText());
         details.dilutionTableTestSampleTotalVolume_text = Double.valueOf(dilutionTableTestSampleTotalVolumeTxt.getText());
         details.dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
@@ -139,6 +139,7 @@ public class DetailsPageTwoController {
 
 
     public void onBackButtonClick(ActionEvent actionEvent) throws IOException {
+        backNavigation = true;
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageOneController.class.getResource("details-page-one.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
         stage.setTitle("Incisive Lab");

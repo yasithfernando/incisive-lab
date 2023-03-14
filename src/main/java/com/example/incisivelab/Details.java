@@ -1,5 +1,7 @@
 package com.example.incisivelab;
 
+import java.util.ArrayList;
+
 public class Details {
     String title_text;
     String batch_number_text;
@@ -24,11 +26,62 @@ public class Details {
     Double dilutionTableReferenceStandardVolumeOfSample_text;
     Double dilutionTableReferenceStandardTotalVolume_text;
 
+    Double rssfConcentrationOfRefernceStndard_text;
+    Double rssfVolumeOfSample_lbl;
+    Double rssfVolumeOf2XRSOB_lbl;
 
+    ArrayList<GelRun> gelRunArrayList = new ArrayList<>();
 
+    public Details() {
+    }
 
+    public ArrayList<GelRun> getGelRunArrayList() {
+        return gelRunArrayList;
+    }
 
+    public void setGelRunArrayList(ArrayList<GelRun> gelRunArrayList) {
+        this.gelRunArrayList = gelRunArrayList;
+    }
 
+    public Integer getNumberOfGelRuns() {
+        return numberOfGelRuns;
+    }
+
+    public void setNumberOfGelRuns(Integer numberOfGelRuns) {
+        this.numberOfGelRuns = numberOfGelRuns;
+    }
+
+    public Double getDilutionTableTestSampleVolumeOfSample_text() {
+        return dilutionTableTestSampleVolumeOfSample_text;
+    }
+
+    public void setDilutionTableTestSampleVolumeOfSample_text(Double dilutionTableTestSampleVolumeOfSample_text) {
+        this.dilutionTableTestSampleVolumeOfSample_text = dilutionTableTestSampleVolumeOfSample_text;
+    }
+
+    public Double getDilutionTableTestSampleTotalVolume_text() {
+        return dilutionTableTestSampleTotalVolume_text;
+    }
+
+    public void setDilutionTableTestSampleTotalVolume_text(Double dilutionTableTestSampleTotalVolume_text) {
+        this.dilutionTableTestSampleTotalVolume_text = dilutionTableTestSampleTotalVolume_text;
+    }
+
+    public Double getDilutionTableReferenceStandardVolumeOfSample_text() {
+        return dilutionTableReferenceStandardVolumeOfSample_text;
+    }
+
+    public void setDilutionTableReferenceStandardVolumeOfSample_text(Double dilutionTableReferenceStandardVolumeOfSample_text) {
+        this.dilutionTableReferenceStandardVolumeOfSample_text = dilutionTableReferenceStandardVolumeOfSample_text;
+    }
+
+    public Double getDilutionTableReferenceStandardTotalVolume_text() {
+        return dilutionTableReferenceStandardTotalVolume_text;
+    }
+
+    public void setDilutionTableReferenceStandardTotalVolume_text(Double dilutionTableReferenceStandardTotalVolume_text) {
+        this.dilutionTableReferenceStandardTotalVolume_text = dilutionTableReferenceStandardTotalVolume_text;
+    }
 
     public Double getRssfTotalVolume_text() {
         return rssfTotalVolume_text;
@@ -69,12 +122,6 @@ public class Details {
     public void setRssfVolumeOf2XRSOB_lbl(Double rssfVolumeOf2XRSOB_lbl) {
         this.rssfVolumeOf2XRSOB_lbl = rssfVolumeOf2XRSOB_lbl;
     }
-
-    Double rssfConcentrationOfRefernceStndard_text;
-    Double rssfVolumeOfSample_lbl;
-    Double rssfVolumeOf2XRSOB_lbl;
-
-
     public Double getTssfTotalVolume_text() {
         return tssfTotalVolume_text;
     }

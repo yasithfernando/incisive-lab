@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 import static logics.mathFunctions.*;
 
@@ -39,8 +40,20 @@ public class ProteinConcentrationPageController {
     public Label rsRSDLabel;
     public BigDecimal testSampleMean;
     public BigDecimal testSampleStandardDeviation;
+    public BigDecimal testSamplePercentage;
+    public BigDecimal testSampleMgMlStock;
+    public BigDecimal testSampleSDII;
+    public BigDecimal testSampleMgMlOriginalStock;
+    public BigDecimal testSampleSDIII;
+    public BigDecimal testSampleRSD;
     public BigDecimal referenceSampleMean;
     public BigDecimal referenceSampleStandardDeviation;
+    public BigDecimal referenceSamplePercentage;
+    public BigDecimal referenceSampleMgMlStock;
+    public BigDecimal referenceSampleSDII;
+    public BigDecimal referenceSampleMgMlOriginalStock;
+    public BigDecimal referenceSampleSDIII;
+    public BigDecimal referenceSampleRSD;
 
     public void initialize() {
         //Set up the protein concentration table
@@ -63,9 +76,11 @@ public class ProteinConcentrationPageController {
 
     private void calculateDerivedData() {
         BigDecimal tsPercentage =  testSampleMean.divide(referenceSampleMean, 5, RoundingMode.DOWN).multiply(new BigDecimal(100));
-
-        System.out.println("Percentage: " + tsPercentage);
+        testSamplePercentage = tsPercentage;
         tsPercentLabel.setText(tsPercentage.toString());
+
+        testSampleMgMlStock = BigDecimal.valueOf(details.getTssfFinalConcentration_text()).multiply((testSamplePercentage.divide(BigDecimal.valueOf(100),3,RoundingMode.HALF_UP)));
+
     }
 
     private void calculateTestSampleMeanAndStandardDeviation(BigDecimal[] testSampleData ) {
@@ -191,6 +206,11 @@ public class ProteinConcentrationPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        //Add This Screens Data into Gel Run Object
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setProteinConcentrationDataTableView(proteinConcentrationTable);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleMean(testSampleMean);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleStandardDeviation(testSampleStandardDeviation);
+
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("linearity-page.fxml"));
 
         //Set the stage with the new scene

@@ -11,8 +11,8 @@ import javafx.util.converter.IntegerStringConverter;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.Date;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class LaneContentsPageController {
@@ -33,29 +33,56 @@ public class LaneContentsPageController {
     JPanel buttonPanel = new JPanel();
 
     //Creating Gel Run Object
-    public static GelRun gelRun;
+    public GelRun gelRun;
+    public static int currentIterativeRunTime = 0;
 
 
     public void initialize() {
-        //Create Gel Run Object
-        gelRun = new GelRun();
+        //Check current run time before initializing lane content page
+        if (currentIterativeRunTime < details.getNumberOfGelRuns()){
+            //Create Gel Run Object
+            gelRun = new GelRun();
 
-        // Set up the table columns
-        TableColumn<LaneContent, Integer> laneColumn = new TableColumn<>("Lane");
-        laneColumn.setCellValueFactory(new PropertyValueFactory<>("lane"));
-        laneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            // Set up the table columns
+            TableColumn<LaneContent, Integer> laneColumn = new TableColumn<>("Lane");
+            laneColumn.setCellValueFactory(new PropertyValueFactory<>("lane"));
+            laneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        TableColumn<LaneContent, Integer> sampleNameColumn = new TableColumn<>("Sample Name");
-        sampleNameColumn.setCellValueFactory(new PropertyValueFactory<>("sampleName"));
-        sampleNameColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            TableColumn<LaneContent, Integer> sampleNameColumn = new TableColumn<>("Sample Name");
+            sampleNameColumn.setCellValueFactory(new PropertyValueFactory<>("sampleName"));
+            sampleNameColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        TableColumn<LaneContent, Double> concentrationColumn = new TableColumn<>("Concentration");
-        concentrationColumn.setCellValueFactory(new PropertyValueFactory<>("concentration"));
-        concentrationColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+            TableColumn<LaneContent, Double> concentrationColumn = new TableColumn<>("Concentration");
+            concentrationColumn.setCellValueFactory(new PropertyValueFactory<>("concentration"));
+            concentrationColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 
-        TableColumn<LaneContent, Double> dilutionLevelColumn = new TableColumn<>("Dilution Level");
-        dilutionLevelColumn.setCellValueFactory(new PropertyValueFactory<>("dilutionLevel"));
-        dilutionLevelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+            TableColumn<LaneContent, Double> dilutionLevelColumn = new TableColumn<>("Dilution Level");
+            dilutionLevelColumn.setCellValueFactory(new PropertyValueFactory<>("dilutionLevel"));
+            dilutionLevelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        } else if (HelloApplication.backNavigation) {
+            // Set up the table columns
+            TableColumn<LaneContent, Integer> laneColumn = new TableColumn<>("Lane");
+            laneColumn.setCellValueFactory(new PropertyValueFactory<>("lane"));
+            laneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+            TableColumn<LaneContent, Integer> sampleNameColumn = new TableColumn<>("Sample Name");
+            sampleNameColumn.setCellValueFactory(new PropertyValueFactory<>("sampleName"));
+            sampleNameColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+            TableColumn<LaneContent, Double> concentrationColumn = new TableColumn<>("Concentration");
+            concentrationColumn.setCellValueFactory(new PropertyValueFactory<>("concentration"));
+            concentrationColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
+            TableColumn<LaneContent, Double> dilutionLevelColumn = new TableColumn<>("Dilution Level");
+            dilutionLevelColumn.setCellValueFactory(new PropertyValueFactory<>("dilutionLevel"));
+            dilutionLevelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        } else{
+            //TODO handle session exit on completion of gel runs
+            //Navigate to final screen
+            stage.close();
+        }
+
+
     }
 
     @FXML
@@ -110,12 +137,12 @@ public class LaneContentsPageController {
         }
         else {
             //TODO Add the Gel Run object to the details object gel run array
-            //Details.gelRunArrayList.add(gelRun);
+            HelloApplication.details.getGelRunArrayList().add(gelRun);
 
             //Setting this screen's lane content data into gel run object
-            gelRun.setGelNumber(gelLetterText.getText());
-            gelRun.setGelRunDate(dateGelRun.getValue());
-            gelRun.setLaneContentTableView(laneContentsTable);
+            details.getGelRunArrayList().get(currentIterativeRunTime).setGelNumber(gelLetterText.getText());
+            details.getGelRunArrayList().get(currentIterativeRunTime).setGelRunDate(dateGelRun.getValue());
+            details.getGelRunArrayList().get(currentIterativeRunTime).setLaneContentTableView(laneContentsTable);
 
             FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
 
