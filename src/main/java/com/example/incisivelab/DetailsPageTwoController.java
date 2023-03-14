@@ -35,6 +35,8 @@ public class DetailsPageTwoController {
     public Label rssfVolumeOf2XRSOBLabel;
     JPanel buttonPanel = new JPanel();
 
+    public TextField numberOfGelRunsTxt;
+
 
     public void tssfCalculations() {
 

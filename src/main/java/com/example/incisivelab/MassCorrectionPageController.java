@@ -1,6 +1,8 @@
 package com.example.incisivelab;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -8,9 +10,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+
+import static com.example.incisivelab.HelloApplication.stage;
 
 public class MassCorrectionPageController {
 
@@ -19,6 +24,8 @@ public class MassCorrectionPageController {
     public Button backBtn;
     public TableView<MassCorrectionData> massCorrectionTable;
     public TableView<NormalisedToDilutionData> normalisedToDilutionTable;
+
+    public static TableView<NormalisedToDilutionData> finalNormalisedToDilutionTable;
 
     public void initialize(){
         // Set up the mass correction table columns
@@ -139,7 +146,15 @@ public class MassCorrectionPageController {
     public void onResetButtonClick(ActionEvent actionEvent) {
     }
 
-    public void onNextButtonClick(ActionEvent actionEvent) {
+    public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        finalNormalisedToDilutionTable = normalisedToDilutionTable;
+        FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("protein-concentration-page.fxml"));
+
+        //Set the stage with the new scene
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onBackButtonClick(ActionEvent actionEvent) {
