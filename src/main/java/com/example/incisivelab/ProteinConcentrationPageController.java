@@ -62,7 +62,9 @@ public class ProteinConcentrationPageController {
     }
 
     private void calculateDerivedData() {
-        BigDecimal tsPercentage =  testSampleMean.divide(referenceSampleMean, RoundingMode.HALF_EVEN).multiply(new BigDecimal(100));
+        BigDecimal tsPercentage =  testSampleMean.divide(referenceSampleMean, 5, RoundingMode.DOWN).multiply(new BigDecimal(100));
+
+        System.out.println("Percentage: " + tsPercentage);
         tsPercentLabel.setText(tsPercentage.toString());
     }
 
@@ -159,19 +161,19 @@ public class ProteinConcentrationPageController {
         concentrationColumn.setCellValueFactory(new PropertyValueFactory<>("concentration"));
         concentrationColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        TableColumn<MassCorrectionPageController.MassCorrectionData, BigDecimal> tsRepOneColumn = new TableColumn<>("TS REP 1");
+        TableColumn<ProteinConcentrationPageController.ProteinConcentrationData, BigDecimal> tsRepOneColumn = new TableColumn<>("TS REP 1");
         tsRepOneColumn.setCellValueFactory(new PropertyValueFactory<>("tsRepOne"));
         tsRepOneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
 
-        TableColumn<MassCorrectionPageController.MassCorrectionData, BigDecimal> tsRepTwoColumn = new TableColumn<>("TS REP 2");
+        TableColumn<ProteinConcentrationPageController.ProteinConcentrationData, BigDecimal> tsRepTwoColumn = new TableColumn<>("TS REP 2");
         tsRepTwoColumn.setCellValueFactory(new PropertyValueFactory<>("tsRepTwo"));
         tsRepTwoColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
 
-        TableColumn<MassCorrectionPageController.MassCorrectionData, BigDecimal> tsRepThreeColumn = new TableColumn<>("TS REP 2");
+        TableColumn<ProteinConcentrationPageController.ProteinConcentrationData, BigDecimal> tsRepThreeColumn = new TableColumn<>("TS REP 2");
         tsRepThreeColumn.setCellValueFactory(new PropertyValueFactory<>("tsRepThree"));
         tsRepThreeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
 
-        TableColumn<MassCorrectionPageController.MassCorrectionData, BigDecimal> rsRepOneColumn = new TableColumn<>("RS REP 1");
+        TableColumn<ProteinConcentrationPageController.ProteinConcentrationData, BigDecimal> rsRepOneColumn = new TableColumn<>("RS REP 1");
         rsRepOneColumn.setCellValueFactory(new PropertyValueFactory<>("rsRepOne"));
         rsRepOneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
     }

@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,58 +20,75 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #0d47a1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.incisivelab.LinearityPageController">
    <children>
-      <LineChart alternativeColumnFillVisible="true" layoutX="392.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
+      <TableView fx:id="bandIntensityTable" layoutX="421.0" layoutY="55.0" prefHeight="200.0" prefWidth="749.0">
+        <columns>
+           <TableColumn prefWidth="250.0" text="Protein concentration (mg/mL)">
+              <cellValueFactory>
+                 <PropertyValueFactory property="concentration" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn prefWidth="125.0" text="TS Rep 1 Gel 1">
+              <cellValueFactory>
+                 <PropertyValueFactory property="tsRepOne" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn prefWidth="125.0" text="TS Rep 2 Gel 1">
+              <cellValueFactory>
+                 <PropertyValueFactory property="tsRepTwo" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn prefWidth="125.0" text="TS Rep 3 Gel 1">
+              <cellValueFactory>
+                 <PropertyValueFactory property="tsRepThree" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn prefWidth="125.0" text="RS Rep 1 Gel 1">
+              <cellValueFactory>
+                 <PropertyValueFactory property="rsRepOne" />
+              </cellValueFactory>
+           </TableColumn>
+        </columns>
+      </TableView>
+      <LineChart fx:id="tsRepOneChart" alternativeColumnFillVisible="true" layoutX="392.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
         <xAxis>
-          <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM">
+          <NumberAxis label="Protein Concentration (mg/mL)" side="BOTTOM" tickLabelFill="WHITE">
                <tickLabelFont>
                   <Font name="Poppins Medium" size="18.0" />
-               </tickLabelFont></CategoryAxis>
+               </tickLabelFont>
+          </NumberAxis>
         </xAxis>
         <yAxis>
-          <NumberAxis label="Band Intensity (AUC)" side="LEFT">
+          <NumberAxis label="Band Intensity (AUC)" side="LEFT" tickLabelFill="WHITE">
                <tickLabelFont>
                   <Font name="Poppins Medium" size="9.0" />
                </tickLabelFont></NumberAxis>
         </yAxis>
       </LineChart>
-      <TableView layoutX="421.0" layoutY="53.0" prefHeight="200.0" prefWidth="749.0">
-        <columns>
-          <TableColumn prefWidth="250.0" text="Protein concentration (mg/mL)" />
-          <TableColumn minWidth="0.0" prefWidth="700.0" text="Band intensity (AUC)">
-               <columns>
-                  <TableColumn prefWidth="125.0" text="TS Rep 1 Gel 1" />
-                  <TableColumn prefWidth="125.0" text="TS Rep 2 Gel 1" />
-                  <TableColumn prefWidth="125.0" text="TS Rep 3 Gel 1" />
-                  <TableColumn prefWidth="125.0" text="RS Rep 1 Gel 1" />
-               </columns>
-            </TableColumn>
-        </columns>
-      </TableView>
-      <LineChart alternativeColumnFillVisible="true" layoutX="392.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
+      <LineChart fx:id="tsRepTwoChart" alternativeColumnFillVisible="true" layoutX="781.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
          <xAxis>
-            <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
+            <NumberAxis label="Protein Concentration (mg/mL)" side="BOTTOM" tickLabelFill="WHITE" />
          </xAxis>
          <yAxis>
-            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" tickLabelFill="WHITE" />
          </yAxis>
       </LineChart>
-      <LineChart alternativeColumnFillVisible="true" layoutX="781.0" layoutY="252.0" prefHeight="238.0" prefWidth="389.0">
+      <LineChart fx:id="tsRepThreeChart" alternativeColumnFillVisible="true" layoutX="392.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
          <xAxis>
-            <CategoryAxis gapStartAndEnd="false" label="Protein Concentration (mg/mL)" side="BOTTOM" />
+            <NumberAxis label="Protein Concentration (mg/mL)" side="BOTTOM" tickLabelFill="WHITE" />
          </xAxis>
          <yAxis>
-            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" tickLabelFill="WHITE" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="rsRepOneChart" alternativeColumnFillVisible="true" layoutX="782.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
+         <xAxis>
+            <NumberAxis label="Protein Concentration (mg/mL)" side="BOTTOM" tickLabelFill="WHITE" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis label="Band Intensity (AUC)" side="LEFT" tickLabelFill="WHITE" />
          </yAxis>
       </LineChart>
       <CategoryAxis layoutX="448.0" layoutY="1.0" side="BOTTOM" />
-      <LineChart alternativeColumnFillVisible="true" layoutX="782.0" layoutY="490.0" prefHeight="238.0" prefWidth="389.0">
-         <xAxis>
-            <CategoryAxis label="Protein Concentration (mg/mL)" side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis label="Band Intensity (AUC)" side="LEFT" />
-         </yAxis>
-      </LineChart>
       <Button fx:id="resetBtn" layoutX="733.0" layoutY="746.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: ff1744;" text="RESET" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -95,7 +113,7 @@
             <Font name="Poppins Medium" size="18.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="421.0" layoutY="14.0" prefHeight="41.0" prefWidth="338.0" style="-fx-background-color: #0091fa;" text="Linearity" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="421.0" layoutY="14.0" prefHeight="41.0" prefWidth="338.0" style="-fx-background-color: #0091fa;" text="BAND INTENSITY (AUC)" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

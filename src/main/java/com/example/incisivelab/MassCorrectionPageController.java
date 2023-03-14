@@ -26,6 +26,7 @@ public class MassCorrectionPageController {
     public TableView<NormalisedToDilutionData> normalisedToDilutionTable;
 
     public static TableView<NormalisedToDilutionData> finalNormalisedToDilutionTable;
+    public static TableView<MassCorrectionData> finalMassCorrectionTable;
 
     public void initialize(){
         // Set up the mass correction table columns
@@ -165,6 +166,7 @@ public class MassCorrectionPageController {
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
         finalNormalisedToDilutionTable = normalisedToDilutionTable;
+        finalMassCorrectionTable = massCorrectionTable;
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("protein-concentration-page.fxml"));
 
         //Set the stage with the new scene
