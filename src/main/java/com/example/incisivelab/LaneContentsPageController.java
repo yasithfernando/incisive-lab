@@ -32,8 +32,14 @@ public class LaneContentsPageController {
     private TableView<LaneContent> laneContentsTable;
     JPanel buttonPanel = new JPanel();
 
+    //Creating Gel Run Object
+    public static GelRun gelRun;
+
 
     public void initialize() {
+        //Create Gel Run Object
+        gelRun = new GelRun();
+
         // Set up the table columns
         TableColumn<LaneContent, Integer> laneColumn = new TableColumn<>("Lane");
         laneColumn.setCellValueFactory(new PropertyValueFactory<>("lane"));
@@ -103,6 +109,14 @@ public class LaneContentsPageController {
             JOptionPane.showMessageDialog(buttonPanel, "Please select the date of the gelrun");
         }
         else {
+            //TODO Add the Gel Run object to the details object gel run array
+            //Details.gelRunArrayList.add(gelRun);
+
+            //Setting this screen's lane content data into gel run object
+            gelRun.setGelNumber(gelLetterText.getText());
+            gelRun.setGelRunDate(dateGelRun.getValue());
+            gelRun.setLaneContentTableView(laneContentsTable);
+
             FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
 
             //Set the stage with the new scene
