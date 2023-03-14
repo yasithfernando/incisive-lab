@@ -12,6 +12,9 @@ public class HelloApplication extends Application {
     public static Stage stage;
     public static Double numberofGelRuns_Text = 1.0;
 
+//    new details object per session
+    public static Details details =  new Details();
+
 
     @Override
     public void start(Stage stage) throws IOException {

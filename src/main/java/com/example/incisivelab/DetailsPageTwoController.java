@@ -11,8 +11,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 import static com.example.incisivelab.DetailsPageOneController.bovine_or_globin;
-import static com.example.incisivelab.HelloApplication.numberofGelRuns_Text;
-import static com.example.incisivelab.HelloApplication.stage;
+import static com.example.incisivelab.HelloApplication.*;
 
 public class DetailsPageTwoController {
     public  TextField dilutionTableTestSampleVolumeOfSampleTxt;
@@ -39,61 +38,61 @@ public class DetailsPageTwoController {
 
     public void tssfCalculations() {
 
-        Double tssfTotalVolume_text = Double.valueOf(tssfTotalVolumeTxt.getText());
-        double tssfFinalConcentration_text = Double.parseDouble(tssfFinalConcentrationTxt.getText());
-        Double tssfEstimatedConcentrationOfTestSample_text = Double.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText());
+        details.setTssfTotalVolume_text(Double.valueOf(tssfTotalVolumeTxt.getText()));
+        details.setTssfFinalConcentration_text(Double.parseDouble(tssfFinalConcentrationTxt.getText()));
+        details.setTssfEstimatedConcentrationOfTestSample_text(Double.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()));
 
-        double tssfVolumeOfSample_lbl = (tssfTotalVolume_text * tssfEstimatedConcentrationOfTestSample_text) / tssfFinalConcentration_text;
-        double tssfVolumeOf2XRSOB_lbl = 1000 - tssfVolumeOfSample_lbl;
-        tssfVolumeOfSampleLabel.setText(String.valueOf(tssfVolumeOfSample_lbl));
-        tssfVolumeOf2XRSOBLabel.setText(String.valueOf(tssfVolumeOf2XRSOB_lbl));
+        details.tssfVolumeOfSample_lbl = (details.tssfTotalVolume_text * details.tssfEstimatedConcentrationOfTestSample_text) / details.tssfFinalConcentration_text;
+        details.tssfVolumeOf2XRSOB_lbl = 1000 - details.tssfVolumeOfSample_lbl;
+        tssfVolumeOfSampleLabel.setText(String.valueOf(details.tssfVolumeOfSample_lbl));
+        tssfVolumeOf2XRSOBLabel.setText(String.valueOf(details.tssfVolumeOf2XRSOB_lbl));
     }
 
     public void rssfCalculations() {
 
-        Double rssfTotalVolume_text = Double.valueOf(rssfTotalVolumeTxt.getText());
-        double rssfFinalConcentration_text = Double.parseDouble(rssfFinalConcentrationTxt.getText());
-        Double rssfConcentrationOfRefernceStndard_text = Double.valueOf(rssfConcentrationOfRefernceStndardTxt.getText());
-        double rssfVolumeOfSample_lbl = (rssfTotalVolume_text * rssfFinalConcentration_text) / rssfFinalConcentration_text;
-        double rssfVolumeOf2XRSOB_lbl = 1000 - rssfVolumeOfSample_lbl;
-        tssfVolumeOfSampleLabel.setText(String.valueOf(rssfVolumeOfSample_lbl));
-        tssfVolumeOf2XRSOBLabel.setText(String.valueOf(rssfVolumeOf2XRSOB_lbl));
+        details.rssfTotalVolume_text = Double.valueOf(rssfTotalVolumeTxt.getText());
+        details.rssfFinalConcentration_text = Double.parseDouble(rssfFinalConcentrationTxt.getText());
+        details.rssfConcentrationOfRefernceStndard_text = Double.valueOf(rssfConcentrationOfRefernceStndardTxt.getText());
+        details.rssfVolumeOfSample_lbl = (details.rssfTotalVolume_text * details.rssfFinalConcentration_text) / details.rssfFinalConcentration_text;
+        details.rssfVolumeOf2XRSOB_lbl = 1000 - details.rssfVolumeOfSample_lbl;
+        tssfVolumeOfSampleLabel.setText(String.valueOf(details.rssfVolumeOfSample_lbl));
+        tssfVolumeOf2XRSOBLabel.setText(String.valueOf(details.rssfVolumeOf2XRSOB_lbl));
 
     }
 
     public void initialize() {
 //        Final Concentration needs to be updated based on Bovine haemoglobin or BlueCheck?
-        if (("Bovine Haemoglobin").equals(bovine_or_globin)) {
+        if (("Bovine Haemoglobin").equals(details.bovine_or_globin)) {
             tssfFinalConcentrationTxt.setText("4");
             rssfFinalConcentrationTxt.setText("4");
-        } else if (("BlueCheck").equals(bovine_or_globin)) {
+        } else if (("BlueCheck").equals(details.bovine_or_globin)) {
             tssfFinalConcentrationTxt.setText("8");
             rssfFinalConcentrationTxt.setText("8");
         }
-        numberOfGelRunsTxtnumberOfGelRunsTxt.setText(String.valueOf(numberofGelRuns_Text));
+        numberOfGelRunsTxtnumberOfGelRunsTxt.setText(String.valueOf(details.numberOfGelRuns));
 
 
     }
 
     public void onNextButtonClick() throws IOException {
-        Double dilutionTableTestSampleVolumeOfSample_text = Double.valueOf(dilutionTableTestSampleVolumeOfSampleTxt.getText());
-        Double dilutionTableTestSampleTotalVolume_text = Double.valueOf(dilutionTableTestSampleTotalVolumeTxt.getText());
-        Double dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
-        Double dilutionTableReferenceStandardTotalVolume_text = Double.valueOf(dilutionTableReferenceStandardTotalVolumeTxt.getText());
-        numberofGelRuns_Text = Double.valueOf(numberOfGelRunsTxtnumberOfGelRunsTxt.getText());
+        details.dilutionTableTestSampleVolumeOfSample_text = Double.valueOf(dilutionTableTestSampleVolumeOfSampleTxt.getText());
+        details.dilutionTableTestSampleTotalVolume_text = Double.valueOf(dilutionTableTestSampleTotalVolumeTxt.getText());
+        details.dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
+        details.dilutionTableReferenceStandardTotalVolume_text = Double.valueOf(dilutionTableReferenceStandardTotalVolumeTxt.getText());
+        details.numberOfGelRuns = Integer.valueOf(numberOfGelRunsTxtnumberOfGelRunsTxt.getText());
 
 //        validations
-        if (dilutionTableTestSampleVolumeOfSample_text <= 0){
+        if (details.dilutionTableTestSampleVolumeOfSample_text <= 0){
             JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for volume of sample in the dilution table ");
-        } else if (dilutionTableTestSampleTotalVolume_text <= 0){
+        } else if (details.dilutionTableTestSampleTotalVolume_text <= 0){
             JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for total volume of sample in the dilution table ");
         }
 
-        else if (dilutionTableReferenceStandardVolumeOfSample_text <= 0){
+        else if (details.dilutionTableReferenceStandardVolumeOfSample_text <= 0){
             JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for sample volume of reference standard in the dilution table ");
-        } else if (dilutionTableReferenceStandardTotalVolume_text <= 0){
+        } else if (details.dilutionTableReferenceStandardTotalVolume_text <= 0){
             JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for total volume of reference standard in the dilution table ");
-        } else if (numberofGelRuns_Text== null ||numberofGelRuns_Text <= 0) {
+        } else if (details.numberOfGelRuns== null ||numberofGelRuns_Text <= 0) {
             JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for gel runs");
 
         } else {
@@ -107,7 +106,7 @@ public class DetailsPageTwoController {
 
     public void tssfFieldsUpdate() {
 
-        if (tssfEstimatedConcentrationOfTestSampleTxt.getText() == null || tssfEstimatedConcentrationOfTestSampleTxt.getText() == "") {
+        if (details.tssfEstimatedConcentrationOfTestSample_text == null || tssfEstimatedConcentrationOfTestSampleTxt.getText() == "") {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
