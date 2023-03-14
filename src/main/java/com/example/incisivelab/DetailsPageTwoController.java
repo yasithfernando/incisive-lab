@@ -74,6 +74,7 @@ public class DetailsPageTwoController {
 
     public void initialize() {
 //        Final Concentration needs to be updated based on Bovine haemoglobin or BlueCheck?
+
         if (("Bovine Haemoglobin").equals(bovine_or_globin)) {
             tssfFinalConcentrationTxt.setText("4");
             rssfFinalConcentrationTxt.setText("4");
