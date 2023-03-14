@@ -54,13 +54,13 @@
                            <font>
                               <Font name="Poppins Medium" size="10.0" />
                            </font></Label>
-                        <TextField fx:id="tssfTotalVolumeTxt" layoutX="192.0" layoutY="82.0" prefHeight="40.0" prefWidth="190.0" />
-                        <TextField fx:id="tssfTotalVolumeTxt" editable="false" layoutX="192.0" layoutY="82.0" prefHeight="40.0" prefWidth="190.0" text="1000">
+                        <TextField fx:id="tssfTotalVolumeTxt" layoutX="192.0" editable="false" layoutY="82.0" prefHeight="40.0" prefWidth="190.0" text="1000" >
                            <font>
                               <Font name="Poppins Medium" size="13.0" />
-                           </font></TextField>
+                           </font>
+                        </TextField>
                         <TextField fx:id="tssfFinalConcentrationTxt" layoutX="192.0" layoutY="202.0" prefHeight="40.0" prefWidth="190.0" />
-                        <TextField fx:id="tssfEstimatedConcentrationOfTestSampleTxt" layoutX="192.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />
+<!--                        <TextField fx:id="tssfEstimatedConcentrationOfTestSampleTxt" layoutX="192.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />-->
                         <TextField fx:id="tssfEstimatedConcentrationOfTestSampleTxt" layoutX="191.0" layoutY="42.0" onAction="#tssfFieldsUpdate" prefHeight="40.0" prefWidth="190.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="192.0" layoutY="123.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="190.0" />
                         <Label fx:id="tssfVolumeOfSampleLabel" layoutX="207.0" layoutY="136.0" prefHeight="16.0" prefWidth="149.0" textAlignment="CENTER" />
@@ -100,13 +100,13 @@
                            <font>
                               <Font name="Poppins Medium" size="11.0" />
                            </font></Label>
-                        <TextField fx:id="rssfTotalVolumeTxt" layoutX="188.0" layoutY="81.0" prefHeight="40.0" prefWidth="189.0" />
+<!--                        <TextField fx:id="rssfTotalVolumeTxt" layoutX="188.0" layoutY="81.0" prefHeight="40.0" prefWidth="189.0" />-->
                         <TextField fx:id="rssfTotalVolumeTxt" layoutX="188.0" layoutY="81.0" prefHeight="40.0" prefWidth="190.0" text="1000">
                            <font>
                               <Font name="Poppins Medium" size="13.0" />
                            </font></TextField>
                         <TextField fx:id="rssfFinalConcentrationTxt" layoutX="188.0" layoutY="203.0" prefHeight="40.0" prefWidth="190.0" />
-                        <TextField fx:id="rssfConcentrationOfRefernceStndardTxt" layoutX="188.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />
+<!--                        <TextField fx:id="rssfConcentrationOfRefernceStndardTxt" layoutX="188.0" layoutY="42.0" prefHeight="40.0" prefWidth="189.0" />-->
                         <TextField fx:id="rssfConcentrationOfRefernceStndardTxt" layoutX="188.0" layoutY="42.0" onAction="#rssfFieldsUpdate" prefHeight="40.0" prefWidth="190.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" layoutX="188.0" layoutY="121.0" stroke="#a3a3a3" strokeType="OUTSIDE" width="190.0" />
                         <Label fx:id="rssfVolumeOfSampleLabel" layoutX="206.0" layoutY="135.0" prefHeight="16.0" prefWidth="149.0" textAlignment="CENTER" />

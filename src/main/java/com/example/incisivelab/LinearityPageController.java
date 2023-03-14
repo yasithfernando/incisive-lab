@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 import static logics.mathFunctions.addTrendLine;
 
@@ -157,9 +158,17 @@ public class LinearityPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+
+        //Add Linearity data to gel run
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setBandIntensityDataTableView(bandIntensityTable);
+
+        System.out.println(details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).toString());
+
         //Increment iterative run time (gel run)
         LaneContentsPageController.currentIterativeRunTime++;
         //TODO Navigate to lane content page
+
+
 
         //Dummy navigation to final screen
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("final-screen.fxml"));

@@ -81,6 +81,8 @@ public class DetailsPageTwoController {
         details.dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
         details.dilutionTableReferenceStandardTotalVolume_text = Double.valueOf(dilutionTableReferenceStandardTotalVolumeTxt.getText());
         details.numberOfGelRuns = Integer.valueOf(numberOfGelRunsTxtnumberOfGelRunsTxt.getText());
+        details.tssfFinalConcentration_text = Double.valueOf(tssfFinalConcentrationTxt.getText());
+        details.rssfFinalConcentration_text = Double.valueOf(rssfFinalConcentrationTxt.getText());
 
 //        validations
         if (details.dilutionTableTestSampleVolumeOfSample_text <= 0){

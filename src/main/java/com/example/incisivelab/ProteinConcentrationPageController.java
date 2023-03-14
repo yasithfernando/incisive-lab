@@ -75,11 +75,46 @@ public class ProteinConcentrationPageController {
     }
 
     private void calculateDerivedData() {
+        //Test Sample Data
         BigDecimal tsPercentage =  testSampleMean.divide(referenceSampleMean, 5, RoundingMode.DOWN).multiply(new BigDecimal(100));
         testSamplePercentage = tsPercentage;
         tsPercentLabel.setText(tsPercentage.toString());
 
         testSampleMgMlStock = BigDecimal.valueOf(details.getTssfFinalConcentration_text()).multiply((testSamplePercentage.divide(BigDecimal.valueOf(100),3,RoundingMode.HALF_UP)));
+        tsStockLabel.setText(testSampleMgMlStock.toString());
+
+        testSampleSDII = testSampleMgMlStock.multiply((testSampleStandardDeviation.divide(testSampleMean,3,RoundingMode.HALF_UP)));
+        tsSDIILabel.setText(testSampleSDII.toString());
+
+        testSampleMgMlOriginalStock = BigDecimal.valueOf(details.dilutionTableTestSampleTotalVolume_text).multiply(
+                (testSampleMgMlStock).divide(BigDecimal.valueOf(details.dilutionTableTestSampleVolumeOfSample_text),3,RoundingMode.HALF_UP));
+        tsOriginalStockLabel.setText(testSampleMgMlOriginalStock.toString());
+
+        testSampleSDIII = testSampleMgMlOriginalStock.multiply((testSampleStandardDeviation.divide(testSampleMean,3,RoundingMode.HALF_UP)));
+        tsSDIIILabel.setText(testSampleSDIII.toString());
+
+        testSampleRSD = BigDecimal.valueOf(100).multiply((testSampleStandardDeviation.divide(testSampleMean,3,RoundingMode.HALF_UP)));
+        tsRSDLabel.setText(testSampleRSD.toString());
+
+        //Reference Sample Data
+        referenceSamplePercentage = referenceSampleMean.divide(referenceSampleMean, 5, RoundingMode.DOWN).multiply(new BigDecimal(100));
+        rsPercentLabel.setText(referenceSamplePercentage.toString());
+
+        referenceSampleMgMlStock = BigDecimal.valueOf(details.getRssfFinalConcentration_text()).multiply((referenceSamplePercentage.divide(BigDecimal.valueOf(100),3,RoundingMode.HALF_UP)));
+        rsStockLabel.setText(referenceSampleMgMlStock.toString());
+
+        referenceSampleSDII = referenceSampleMgMlStock.multiply((referenceSampleStandardDeviation.divide(referenceSampleMean,3,RoundingMode.HALF_UP)));
+        rsSDIILabel.setText(referenceSampleSDII.toString());
+
+        referenceSampleMgMlOriginalStock = BigDecimal.valueOf(details.dilutionTableReferenceStandardTotalVolume_text).multiply(
+                (referenceSampleMgMlStock).divide(BigDecimal.valueOf(details.dilutionTableReferenceStandardVolumeOfSample_text),3,RoundingMode.HALF_UP));
+        rsOriginalStockLabel.setText(referenceSampleMgMlOriginalStock.toString());
+
+        referenceSampleSDIII = referenceSampleMgMlOriginalStock.multiply((referenceSampleStandardDeviation.divide(referenceSampleMean,3,RoundingMode.HALF_UP)));
+        rsSDIIILabel.setText(referenceSampleSDIII.toString());
+
+        referenceSampleRSD = BigDecimal.valueOf(100).multiply((referenceSampleStandardDeviation.divide(referenceSampleMean,3,RoundingMode.HALF_UP)));
+        rsRSDLabel.setText(referenceSampleRSD.toString());
 
     }
 
@@ -208,8 +243,26 @@ public class ProteinConcentrationPageController {
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
         //Add This Screens Data into Gel Run Object
         details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setProteinConcentrationDataTableView(proteinConcentrationTable);
+
         details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleMean(testSampleMean);
         details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleStandardDeviation(testSampleStandardDeviation);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSamplePercentage(testSamplePercentage);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleMgMlStock(testSampleMgMlStock);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleSDII(testSampleSDII);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleMgMlOriginalSample(testSampleMgMlOriginalStock);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleSDIII(testSampleSDIII);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setTestSampleRSD(testSampleRSD);
+
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleMean(referenceSampleMean);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleStandardDeviation(referenceSampleStandardDeviation);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSamplePercentage(referenceSamplePercentage);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleMgMlStock(referenceSampleMgMlStock);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleSDII(referenceSampleSDII);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleMgMlOriginalSample(referenceSampleMgMlOriginalStock);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleSDIII(referenceSampleSDIII);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setReferenceSampleRSD(referenceSampleRSD);
+
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("linearity-page.fxml"));
 
