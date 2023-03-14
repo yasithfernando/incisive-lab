@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class LaneIndicatorPageController {
     public Button backBtn;
     public ImageView gelImageViewer;
     public Button addGelImageButton;
+    JPanel buttonPanel = new JPanel();
+
 
     public void onAddGelImageButtonClick(ActionEvent actionEvent) {
         // Create a new file chooser dialog
@@ -45,6 +48,12 @@ public class LaneIndicatorPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        if (gelImageViewer.getImage() == null){
+            JOptionPane.showMessageDialog(buttonPanel, "Please Upload an image of the gel run");
+        }
+        else {
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(RawDataPageController.class.getResource("raw-data-page.fxml"));
 
         //Set the stage with the new scene
@@ -52,6 +61,7 @@ public class LaneIndicatorPageController {
         stage.setTitle("Incisive Lab");
         stage.setScene(scene);
         stage.show();
+        }
 
     }
 

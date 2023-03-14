@@ -89,7 +89,6 @@ public class DetailsPageTwoController {
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
 //        validations
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(LaneContentsPageController.class.getResource("lane-contents-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
         stage.setTitle("Incisive Lab");
@@ -104,7 +103,7 @@ public class DetailsPageTwoController {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
-        } else if (tssfEstimatedConcentrationOfTestSampleTxt.getText() != null && Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) > 0) {
+        } else if (tssfEstimatedConcentrationOfTestSampleTxt.getText() != null && Integer.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()) > 0) {
             double tssfFinalConcentration_txt = Double.parseDouble(tssfFinalConcentrationTxt.getText());
             double tssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(tssfEstimatedConcentrationOfTestSampleTxt.getText());
             double output = (1000 * tssfFinalConcentration_txt) / tssfEstimatedConcentrationOfTestSample_txt;
@@ -117,7 +116,7 @@ public class DetailsPageTwoController {
         if (rssfConcentrationOfRefernceStndardTxt.getText() == null || rssfConcentrationOfRefernceStndardTxt.getText() == "") {
             JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
+            JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be Negative ");
         } else if (rssfConcentrationOfRefernceStndardTxt.getText() != null && Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) > 0) {
             double rssfFinalConcentration_txt = Double.parseDouble(rssfFinalConcentrationTxt.getText());
             double rssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(rssfConcentrationOfRefernceStndardTxt.getText());
@@ -127,7 +126,7 @@ public class DetailsPageTwoController {
         } else if (rssfConcentrationOfRefernceStndardTxt.getText() == null) {
             JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) <= 0) {
-            JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
+            JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be Negative ");
         }
     }
 

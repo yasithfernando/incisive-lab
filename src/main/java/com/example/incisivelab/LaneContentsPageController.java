@@ -9,7 +9,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.Date;
 
 import static com.example.incisivelab.HelloApplication.stage;
 
@@ -23,8 +25,13 @@ public class LaneContentsPageController {
     public TextField sampleNameTxt;
     public TextField concentrationText;
     public TextField dilutionLevelText;
+
+    public TextField gelLetterText;
+    public DatePicker dateGelRun;
     @FXML
     private TableView<LaneContent> laneContentsTable;
+    JPanel buttonPanel = new JPanel();
+
 
     public void initialize() {
         // Set up the table columns
@@ -43,20 +50,13 @@ public class LaneContentsPageController {
         TableColumn<LaneContent, Double> dilutionLevelColumn = new TableColumn<>("Dilution Level");
         dilutionLevelColumn.setCellValueFactory(new PropertyValueFactory<>("dilutionLevel"));
         dilutionLevelColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-
-//        laneContentsTable.getColumns().addAll(sampleNameCol, dilutionFactorCol, standardCurveConcentrationCol);
-
-        // Add some sample data to the table
-        LaneContent sample1 = new LaneContent(1,"Sample 1", 2, 10.0);
-        LaneContent sample2 = new LaneContent(2, "Sample 2", 4, 20.0);
-        laneContentsTable.getItems().addAll(sample1, sample2);
-        laneContentsTable.getItems().add(sample2);
     }
 
     @FXML
     public void addRow() {
-        // Add a new blank row to the table
         if (sampleNameTxt.getText() != null && concentrationText.getText() != null && dilutionLevelText.getText() != null){
+            //todo check for number
+//            if (concentrationText.getText())
             try {
                 laneContentsTable.getItems().add(new LaneContent(
                         laneContentsTable.getItems().size() + 1,
@@ -71,6 +71,9 @@ public class LaneContentsPageController {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
+        }else {
+            JOptionPane.showMessageDialog(buttonPanel, "Fill All Fields in order to add a row");
+
         }
 
     }
@@ -82,6 +85,10 @@ public class LaneContentsPageController {
         if (selectedIndex >= 0) {
             laneContentsTable.getItems().remove(selectedIndex);
         }
+        else {
+            JOptionPane.showMessageDialog(buttonPanel, "There are no rows left to remove");
+
+        }
     }
 
     public void onResetButtonClick(ActionEvent actionEvent) {
@@ -89,14 +96,21 @@ public class LaneContentsPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
+        if (gelLetterText.getText() == null || gelLetterText.getText() == ""){
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a Gel letter or number");
+        }
+        else if (dateGelRun.getValue() == null) {
+            JOptionPane.showMessageDialog(buttonPanel, "Please select the date of the gelrun");
+        }
+        else {
+            FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
 
-        //Set the stage with the new scene
-        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
-        stage.setTitle("Incisive Lab");
-        stage.setScene(scene);
-        stage.show();
-
+            //Set the stage with the new scene
+            Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+            stage.setTitle("Incisive Lab");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void onBackButtonClick(ActionEvent actionEvent) throws IOException {
