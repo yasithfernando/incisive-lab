@@ -89,7 +89,6 @@ public class DetailsPageTwoController {
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
 //        validations
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(LaneContentsPageController.class.getResource("lane-contents-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
         stage.setTitle("Incisive Lab");
