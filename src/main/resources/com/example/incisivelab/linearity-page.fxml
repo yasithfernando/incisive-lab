@@ -89,14 +89,6 @@
          </yAxis>
       </LineChart>
       <CategoryAxis layoutX="448.0" layoutY="1.0" side="BOTTOM" />
-      <Button fx:id="resetBtn" layoutX="733.0" layoutY="746.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: ff1744;" text="RESET" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Poppins Medium" size="18.0" />
-         </font>
-      </Button>
       <Button fx:id="nextBtn" layoutX="1045.0" layoutY="746.0" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #0091FF;" text="NEXT" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />

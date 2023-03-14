@@ -10,6 +10,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     public static Stage stage;
+    public static Double numberofGelRuns_Text = 1.0;
 
 
     @Override

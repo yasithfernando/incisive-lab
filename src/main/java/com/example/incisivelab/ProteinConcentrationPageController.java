@@ -178,7 +178,15 @@ public class ProteinConcentrationPageController {
         rsRepOneColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
     }
 
-    public void onResetButtonClick(ActionEvent actionEvent) {
+    public void onResetButtonClick(ActionEvent actionEvent) throws IOException{
+
+        FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource(" mass-correction-page.fxml"));
+
+        //Set the stage with the new scene
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -186,7 +194,7 @@ public class ProteinConcentrationPageController {
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("linearity-page.fxml"));
 
         //Set the stage with the new scene
-        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 1200,    800);
         stage.setTitle("Incisive Lab");
         stage.setScene(scene);
         stage.show();
@@ -194,6 +202,9 @@ public class ProteinConcentrationPageController {
 
     public void onBackButtonClick(ActionEvent actionEvent) {
 
+    }
+
+    public void tssfFieldsUpdate(ActionEvent actionEvent) {
     }
 
     public static class ProteinConcentrationData {

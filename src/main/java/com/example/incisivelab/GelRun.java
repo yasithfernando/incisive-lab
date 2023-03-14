@@ -39,9 +39,4 @@ public class GelRun {
     private BigDecimal testSampleStandardDeviation;
     private BigDecimal referenceSampleMean;
 
-    //TODO rest of the tables and data from protein concentration view onwards
-
-
-
-
 }

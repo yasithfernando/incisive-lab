@@ -176,7 +176,12 @@ public class MassCorrectionPageController {
         stage.show();
     }
 
-    public void onBackButtonClick(ActionEvent actionEvent) {
+    public void onBackButtonClick(ActionEvent actionEvent)  throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageOneController.class.getResource("raw-data-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static class MassCorrectionData{

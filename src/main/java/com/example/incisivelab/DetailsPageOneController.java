@@ -34,18 +34,7 @@ public class DetailsPageOneController {
 
 //    todo rename
     JPanel buttonPanel = new JPanel();
-    @FXML
-    public void onResetButtonClick() {
-        JOptionPane.showMessageDialog(buttonPanel,"All Inputs Have been reset");
 
-        txtTitle.setText("");
-        batchNumberText.setText("");
-        checkpointTxt.setText("");
-        analystTxt.setText("");
-        checkpointTxt.setText("");
-        notesTxt.setText("");
-
-    }
     @FXML
     public void onNextButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("details-page-two.fxml"));
@@ -71,7 +60,7 @@ public class DetailsPageOneController {
         } else if (inputValidater(checked_text, "[a-zA-Z ]+")) {
         JOptionPane.showMessageDialog(buttonPanel,"Invalid input for checked text \n" + checked_text);
         }else if (inputValidater(notes_text, "[a-zA-Z ]+")) {
-            JOptionPane.showMessageDialog(buttonPanel,"Invalid input for notes text \n" + title_text);
+            JOptionPane.showMessageDialog(buttonPanel,"Invalid input for notes text \n" + notes_text);
         } else if (bovine_or_globin == null) {
             JOptionPane.showMessageDialog(buttonPanel, "Select either for Bovine haemoglobin or BlueCheck ");
         }else {

@@ -11,14 +11,16 @@ import javax.swing.*;
 import java.io.IOException;
 
 import static com.example.incisivelab.DetailsPageOneController.bovine_or_globin;
+import static com.example.incisivelab.HelloApplication.numberofGelRuns_Text;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class DetailsPageTwoController {
-    public static TextField dilutionTableTestSampleVolumeOfSampleTxt;
-    public static TextField dilutionTableTestSampleTotalVolumeTxt;
-    public static TextField dilutionTableReferenceStandardVolumeOfSampleTxt;
-    public static TextField dilutionTableReferenceStandardTotalVolumeTxt;
-    static int numberOfGelRuns;
+    public  TextField dilutionTableTestSampleVolumeOfSampleTxt;
+    public  TextField dilutionTableTestSampleTotalVolumeTxt;
+    public  TextField dilutionTableReferenceStandardVolumeOfSampleTxt;
+    public  TextField dilutionTableReferenceStandardTotalVolumeTxt;
+    public TextField numberOfGelRunsTxtnumberOfGelRunsTxt;
+
     //todo after ui changes take place
     public Button resetBtn;
     public Button nextBtn;
@@ -35,9 +37,6 @@ public class DetailsPageTwoController {
     public Label rssfVolumeOf2XRSOBLabel;
     JPanel buttonPanel = new JPanel();
 
-    public TextField numberOfGelRunsTxt;
-
-
     public void tssfCalculations() {
 
         Double tssfTotalVolume_text = Double.valueOf(tssfTotalVolumeTxt.getText());
@@ -48,7 +47,6 @@ public class DetailsPageTwoController {
         double tssfVolumeOf2XRSOB_lbl = 1000 - tssfVolumeOfSample_lbl;
         tssfVolumeOfSampleLabel.setText(String.valueOf(tssfVolumeOfSample_lbl));
         tssfVolumeOf2XRSOBLabel.setText(String.valueOf(tssfVolumeOf2XRSOB_lbl));
-
     }
 
     public void rssfCalculations() {
@@ -56,20 +54,11 @@ public class DetailsPageTwoController {
         Double rssfTotalVolume_text = Double.valueOf(rssfTotalVolumeTxt.getText());
         double rssfFinalConcentration_text = Double.parseDouble(rssfFinalConcentrationTxt.getText());
         Double rssfConcentrationOfRefernceStndard_text = Double.valueOf(rssfConcentrationOfRefernceStndardTxt.getText());
-
         double rssfVolumeOfSample_lbl = (rssfTotalVolume_text * rssfFinalConcentration_text) / rssfFinalConcentration_text;
         double rssfVolumeOf2XRSOB_lbl = 1000 - rssfVolumeOfSample_lbl;
-        //todo set lables to have these values
         tssfVolumeOfSampleLabel.setText(String.valueOf(rssfVolumeOfSample_lbl));
         tssfVolumeOf2XRSOBLabel.setText(String.valueOf(rssfVolumeOf2XRSOB_lbl));
 
-    }
-
-    public void dialutionTable() {
-        Double dilutionTableTestSampleVolumeOfSample_text = Double.valueOf(dilutionTableTestSampleVolumeOfSampleTxt.getText());
-        Double dilutionTableTestSampleTotalVolume_text = Double.valueOf(dilutionTableTestSampleTotalVolumeTxt.getText());
-        Double dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
-        Double dilutionTableReferenceStandardTotalVolume_text = Double.valueOf(dilutionTableReferenceStandardTotalVolumeTxt.getText());
     }
 
     public void initialize() {
@@ -81,20 +70,39 @@ public class DetailsPageTwoController {
             tssfFinalConcentrationTxt.setText("8");
             rssfFinalConcentrationTxt.setText("8");
         }
+        numberOfGelRunsTxtnumberOfGelRunsTxt.setText(String.valueOf(numberofGelRuns_Text));
+
+
     }
 
-    public void onResetButtonClick(ActionEvent actionEvent) {
-    }
+    public void onNextButtonClick() throws IOException {
+        Double dilutionTableTestSampleVolumeOfSample_text = Double.valueOf(dilutionTableTestSampleVolumeOfSampleTxt.getText());
+        Double dilutionTableTestSampleTotalVolume_text = Double.valueOf(dilutionTableTestSampleTotalVolumeTxt.getText());
+        Double dilutionTableReferenceStandardVolumeOfSample_text = Double.valueOf(dilutionTableReferenceStandardVolumeOfSampleTxt.getText());
+        Double dilutionTableReferenceStandardTotalVolume_text = Double.valueOf(dilutionTableReferenceStandardTotalVolumeTxt.getText());
+        numberofGelRuns_Text = Double.valueOf(numberOfGelRunsTxtnumberOfGelRunsTxt.getText());
 
-    public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
 //        validations
+        if (dilutionTableTestSampleVolumeOfSample_text <= 0){
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for volume of sample in the dilution table ");
+        } else if (dilutionTableTestSampleTotalVolume_text <= 0){
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for total volume of sample in the dilution table ");
+        }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LaneContentsPageController.class.getResource("lane-contents-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
-        stage.setTitle("Incisive Lab");
-        stage.setScene(scene);
-        stage.show();
+        else if (dilutionTableReferenceStandardVolumeOfSample_text <= 0){
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for sample volume of reference standard in the dilution table ");
+        } else if (dilutionTableReferenceStandardTotalVolume_text <= 0){
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for total volume of reference standard in the dilution table ");
+        } else if (numberofGelRuns_Text== null ||numberofGelRuns_Text <= 0) {
+            JOptionPane.showMessageDialog(buttonPanel, "Please enter a valid value for gel runs");
 
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(LaneContentsPageController.class.getResource("lane-contents-page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+            stage.setTitle("Incisive Lab");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void tssfFieldsUpdate() {

@@ -78,17 +78,17 @@
                      <Font name="Poppins Medium" size="15.0" />
                   </font>
                </Label>
-               <TextArea fx:id="notesTxt" layoutX="61.0" layoutY="237.0" prefHeight="40.0" prefWidth="693.0" style="-fx-border-radius: 0px;">
+               <TextArea fx:id="notesTxt" layoutX="61.0" layoutY="237.0" prefHeight="134.0" prefWidth="693.0" style="-fx-border-radius: 0px;">
                   <font>
                      <Font name="Poppins Medium" size="13.0" />
                   </font>
                </TextArea>
-               <Label layoutX="61.0" layoutY="342.0" prefHeight="16.0" prefWidth="693.0" text="Is this assay for Bovine Haemoglobin or BlueCheck? (Select from drop-down options)" textFill="WHITE">
+               <Label layoutX="61.0" layoutY="383.0" prefHeight="16.0" prefWidth="693.0" text="Is this assay for Bovine Haemoglobin or BlueCheck? (Select from drop-down options)" textFill="WHITE">
                   <font>
                      <Font name="Poppins Medium" size="15.0" />
                   </font>
                </Label>
-               <ComboBox fx:id="bovineBlueCombo" layoutX="61.0" layoutY="365.0" prefHeight="45.0" prefWidth="693.0" promptText="Select option">
+               <ComboBox fx:id="bovineBlueCombo" layoutX="61.0" layoutY="406.0" prefHeight="45.0" prefWidth="693.0" promptText="Select option">
                   <items>
                      <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Bovine Haemoglobin" />
@@ -103,14 +103,6 @@
                </cursor>
                <font>
                   <Font name="Poppins Medium" size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="resetBtn" layoutX="902.0" layoutY="657.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: ff1744;" text="RESET" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font size="18.0" />
                </font>
             </Button>
          </AnchorPane>

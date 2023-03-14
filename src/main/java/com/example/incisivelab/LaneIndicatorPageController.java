@@ -24,22 +24,13 @@ public class LaneIndicatorPageController {
 
 
     public void onAddGelImageButtonClick(ActionEvent actionEvent) {
-        // Create a new file chooser dialog
         FileChooser fileChooser = new FileChooser();
-
-        // Configure the dialog to only show JPG and PNG files
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image files (*.jpg, *.png)", "*.jpg", "*.png");
         fileChooser.getExtensionFilters().add(imageFilter);
-
-        // Show the dialog and wait for the user to choose a file
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-
-            // Do something with the selected file here
             Image image = new Image(selectedFile.toURI().toString());
-
-            // Set the loaded image as the source of the ImageView
             gelImageViewer.setImage(image);
         }
     }
@@ -52,8 +43,6 @@ public class LaneIndicatorPageController {
             JOptionPane.showMessageDialog(buttonPanel, "Please Upload an image of the gel run");
         }
         else {
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(RawDataPageController.class.getResource("raw-data-page.fxml"));
 
         //Set the stage with the new scene
