@@ -3,6 +3,7 @@ package com.example.incisivelab;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -33,6 +34,10 @@ public class GelRun {
     private Image gelImage;
     private TableView<MassCorrectionPageController.MassCorrectionData> massCorrectionDataTableView;
     private TableView<MassCorrectionPageController.NormalisedToDilutionData> normalisedToDilutionDataTableView;
+    private TableView<ProteinConcentrationPageController.ProteinConcentrationData> proteinConcentrationDataTableView;
+    private BigDecimal testSampleMean;
+    private BigDecimal testSampleStandardDeviation;
+    private BigDecimal referenceSampleMean;
 
     //TODO rest of the tables and data from protein concentration view onwards
 
