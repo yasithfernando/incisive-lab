@@ -18,11 +18,22 @@ public class Details {
     Double rssfTotalVolume_text;
     Double rssfFinalConcentration_text;
 
+
     Integer numberOfGelRuns = 1;
     Double dilutionTableTestSampleVolumeOfSample_text;
     Double dilutionTableTestSampleTotalVolume_text;
     Double dilutionTableReferenceStandardVolumeOfSample_text;
     Double dilutionTableReferenceStandardTotalVolume_text;
+
+    Double tssfFinalConcentration_txt;
+    Double tssfEstimatedConcentrationOfTestSample_txt;
+    Double tssfoutput;
+
+    Double rssfFinalConcentration_txt;
+
+    Double rssfEstimatedConcentrationOfTestSample_txt;
+    Double rssfoutput;
+
 
 
 

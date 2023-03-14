@@ -41,9 +41,9 @@ public class DetailsPageOneController {
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("details-page-two.fxml"));
         details.setTitle_text(txtTitle.getText());
         details.setBatch_number_text(batchNumberText.getText());
-        details.setCheckPoint_text(checkPoint_text);
+        details.setCheckPoint_text(checkpointTxt.getText());
         details.setAnalyst_text(analystTxt.getText());
-        details.setChecked_text(checkpointTxt.getText());
+        details.setChecked_text(checkerTxt.getText());
         details.setNotes_text(notesTxt.getText());
         details.setBovine_or_globin((String) bovineBlueCombo.getValue());
 
