@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javax.swing.*;
 import java.io.IOException;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class DetailsPageOneController {
@@ -34,45 +35,29 @@ public class DetailsPageOneController {
 
 //    todo rename
     JPanel buttonPanel = new JPanel();
-    @FXML
-    public void onResetButtonClick() {
-        JOptionPane.showMessageDialog(buttonPanel,"All Inputs Have been reset");
 
-        txtTitle.setText("");
-        batchNumberText.setText("");
-        checkpointTxt.setText("");
-        analystTxt.setText("");
-        checkpointTxt.setText("");
-        notesTxt.setText("");
-
-    }
     @FXML
     public void onNextButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("details-page-two.fxml"));
+        details.setTitle_text(txtTitle.getText());
+        details.setBatch_number_text(batchNumberText.getText());
+        details.setCheckPoint_text(checkPoint_text);
+        details.setAnalyst_text(analystTxt.getText());
+        details.setChecked_text(checkpointTxt.getText());
+        details.setNotes_text(notesTxt.getText());
+        details.setBovine_or_globin((String) bovineBlueCombo.getValue());
 
-        title_text = txtTitle.getText() ;
-        batch_number_text = batchNumberText.getText();
-        checkPoint_text = checkpointTxt.getText();
-        analyst_text = analystTxt.getText();
-        checked_text = checkpointTxt.getText();
-        notes_text = notesTxt.getText();
-        bovine_or_globin = (String) bovineBlueCombo.getValue();
-
-        System.out.println(bovine_or_globin);
-
-        if (inputValidater(title_text, "[a-zA-Z0-9 ]+")){
+        if (inputValidater(details.title_text, "[a-zA-Z0-9 ]+")){
             JOptionPane.showMessageDialog(buttonPanel,"Invalid input for Title Text \n" + title_text);
-        } else if (inputValidater(batch_number_text, "[a-zA-Z0-9 ]+")) {
+        } else if (inputValidater(details.batch_number_text, "[a-zA-Z0-9 ]+")) {
             JOptionPane.showMessageDialog(buttonPanel,"Invalid input for Batch Number \n" + batch_number_text);
-        } else if (inputValidater(checkPoint_text, "[a-zA-Z ]+")) {
+        } else if (inputValidater(details.checkPoint_text, "[a-zA-Z ]+")) {
             JOptionPane.showMessageDialog(buttonPanel, "Invalid input for checkpoint text \n" + checkPoint_text);
-        } else if (inputValidater(analyst_text, "[a-zA-Z ]+")) {
+        } else if (inputValidater(details.analyst_text, "[a-zA-Z ]+")) {
             JOptionPane.showMessageDialog(buttonPanel,"Invalid input for analyst text \n" + analyst_text);
-        } else if (inputValidater(checked_text, "[a-zA-Z ]+")) {
+        } else if (inputValidater(details.checked_text, "[a-zA-Z ]+")) {
         JOptionPane.showMessageDialog(buttonPanel,"Invalid input for checked text \n" + checked_text);
-        }else if (inputValidater(notes_text, "[a-zA-Z ]+")) {
-            JOptionPane.showMessageDialog(buttonPanel,"Invalid input for notes text \n" + title_text);
-        } else if (bovine_or_globin == null) {
+        } else if (details.bovine_or_globin == null) {
             JOptionPane.showMessageDialog(buttonPanel, "Select either for Bovine haemoglobin or BlueCheck ");
         }else {
             Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
@@ -80,8 +65,6 @@ public class DetailsPageOneController {
             stage.setScene(scene);
             stage.show();
         }
-
-
     }
     public boolean inputValidater(String text,String regex) {
         return !text.matches(regex);

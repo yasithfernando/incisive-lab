@@ -11,12 +11,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1178.0" style="-fx-background-color: #0d47a1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.incisivelab.MassCorrectionPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1178.0" style="-fx-background-color: #0d47a1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.incisivelab.MassCorrectionPageController">
    <children>
       <TableView fx:id="massCorrectionTable" layoutX="298.0" layoutY="61.0" prefHeight="258.0" prefWidth="844.0">
          <columns>
@@ -52,7 +51,7 @@
              </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="resetBtn" layoutX="747.0" layoutY="670.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: ff1744;" text="RESET" textFill="WHITE">
+      <Button fx:id="nextBtn" layoutX="1027.0" layoutY="650.0" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #0091FF;" text="NEXT" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -60,15 +59,7 @@
             <Font name="Poppins Medium" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="nextBtn" layoutX="887.0" layoutY="670.0" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #0091FF;" text="NEXT" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="Poppins Medium" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="backBtn" layoutX="1027.0" layoutY="670.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #0091FF;" text="BACK" textFill="WHITE">
+      <Button fx:id="backBtn" layoutX="888.0" layoutY="650.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="125.0" style="-fx-background-color: #0091FF;" text="BACK" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -120,47 +111,11 @@
             <Font name="Poppins Medium" size="18.0" />
          </font>
       </Label>
-      <Pane layoutX="309.0" layoutY="655.0" style="-fx-background-color: e3e3e3;">
-         <children>
-            <Label text="ug">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="26.0" text="Dilutions">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="26.0" layoutY="25.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.025">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="1.0" layoutY="25.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="1">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="26.0" layoutY="50.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.05">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="1.0" layoutY="50.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="2">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="26.0" layoutY="75.0" prefHeight="16.0" prefWidth="58.0" style="-fx-background-color: #e3e3e3;" text="0.1">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-            <Label layoutX="1.0" layoutY="75.0" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #e3e3e3;" text="4">
-               <font>
-                  <Font name="Poppins Medium" size="11.0" />
-               </font></Label>
-         </children>
-      </Pane>
       <AnchorPane prefHeight="676.0" prefWidth="263.0">
          <children>
             <AnchorPane layoutY="-14.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="746.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: white;" width="263.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="755.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-background-color: white;" width="263.0" />
                   <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="27.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/settings-icon.png" />
@@ -236,7 +191,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="8.0" />
                </children>
             </AnchorPane>
-            <VBox alignment="CENTER_LEFT" layoutX="71.0" prefHeight="711.0" prefWidth="192.0" spacing="8.0" style="-fx-background-color: white;">
+            <VBox alignment="CENTER_LEFT" layoutX="71.0" prefHeight="700.0" prefWidth="192.0" spacing="8.0" style="-fx-background-color: white;">
                <children>
                   <Label contentDisplay="CENTER" prefHeight="50.0" prefWidth="223.0" style="-fx-padding: 10px;" text="Details" textFill="#030101">
                      <font>

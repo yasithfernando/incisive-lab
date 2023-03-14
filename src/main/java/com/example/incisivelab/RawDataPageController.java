@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 
+import javax.swing.*;
 import java.io.IOException;
 
 import static com.example.incisivelab.HelloApplication.stage;
@@ -29,6 +30,8 @@ public class RawDataPageController {
     public TextField dimerText;
     public TextField trimerText;
     public TextField tretramerText;
+    JPanel buttonPanel = new JPanel();
+
 
     public void initialize(){
         // Set up the table columns
@@ -74,6 +77,20 @@ public class RawDataPageController {
 
     public void addRow(ActionEvent actionEvent) {
         if (sampleNameTxt.getText() != null && monomerText.getText() != null && dimerText.getText() != null && trimerText.getText() != null && tretramerText.getText() != null){
+//            if (Double.parseDouble(monomerText.getText()) <= 0 ){
+//
+//            if (Double.parseDouble(monomerText.getText()) <= 0 ){
+//                JOptionPane.showMessageDialog(buttonPanel, "monomer Value Cannot be negative or 0");
+//            }
+//            else if (Double.parseDouble(dimerText.getText()) <= 0 ){
+//                JOptionPane.showMessageDialog(buttonPanel, "monomer Value Cannot be negative or 0");
+//            }
+//            else if (Double.parseDouble(trimerText.getText()) <= 0 ){
+//                JOptionPane.showMessageDialog(buttonPanel, "monomer Value Cannot be negative or 0");
+//            }
+//            else if (Double.parseDouble(tretramerText.getText()) <= 0 ){
+//                JOptionPane.showMessageDialog(buttonPanel, "monomer Value Cannot be negative or 0");
+//            } else {
             try {
                 rawDataTable.getItems().add(new RawData(
                         sampleNameTxt.getText(),
@@ -92,6 +109,7 @@ public class RawDataPageController {
                 throw new RuntimeException(e);
             }
         }
+//        }
     }
 
     public void removeRow(ActionEvent actionEvent) {
@@ -120,7 +138,7 @@ public class RawDataPageController {
         FXMLLoader fxmlLoader = new FXMLLoader(LaneIndicatorPageController.class.getResource("lane-indicator-page.fxml"));
 
         //Set the stage with the new scene
-        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 750);
         stage.setTitle("Incisive Lab");
         stage.setScene(scene);
         stage.show();

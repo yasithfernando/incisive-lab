@@ -1,7 +1,9 @@
 package com.example.incisivelab;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
@@ -11,10 +13,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.BigDecimalStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.incisivelab.HelloApplication.stage;
 import static logics.mathFunctions.addTrendLine;
 
 public class LinearityPageController {
@@ -144,12 +148,20 @@ public class LinearityPageController {
         }
     }
 
-    public void onResetButtonClick(ActionEvent actionEvent) {
-
+    public void onResetButtonClick(ActionEvent actionEvent) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("final-screen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void onNextButtonClick(ActionEvent actionEvent) {
-
+    public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("final-screen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
+        stage.setTitle("Incisive Lab");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onBackButtonClick(ActionEvent actionEvent) {

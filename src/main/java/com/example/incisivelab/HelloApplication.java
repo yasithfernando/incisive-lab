@@ -10,6 +10,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     public static Stage stage;
+    public static Double numberofGelRuns_Text = 1.0;
+
+//    new details object per session
+    public static Details details =  new Details();
 
     public static int numberOfGelRuns;
 
