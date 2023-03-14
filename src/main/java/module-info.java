@@ -10,6 +10,7 @@ module com.example.incisivelab {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires commons.math3;
+    requires org.apache.pdfbox;
 
     opens com.example.incisivelab to javafx.fxml;
     exports com.example.incisivelab;

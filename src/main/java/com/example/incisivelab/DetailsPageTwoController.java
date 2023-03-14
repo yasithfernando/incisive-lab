@@ -54,6 +54,7 @@ public class DetailsPageTwoController {
         details.rssfConcentrationOfRefernceStndard_text = Double.valueOf(rssfConcentrationOfRefernceStndardTxt.getText());
         details.rssfVolumeOfSample_lbl = (details.rssfTotalVolume_text * details.rssfFinalConcentration_text) / details.rssfFinalConcentration_text;
         details.rssfVolumeOf2XRSOB_lbl = 1000 - details.rssfVolumeOfSample_lbl;
+
         tssfVolumeOfSampleLabel.setText(String.valueOf(details.rssfVolumeOfSample_lbl));
         tssfVolumeOf2XRSOBLabel.setText(String.valueOf(details.rssfVolumeOf2XRSOB_lbl));
 
@@ -105,31 +106,35 @@ public class DetailsPageTwoController {
     }
 
     public void tssfFieldsUpdate() {
+        details.tssfEstimatedConcentrationOfTestSample_text = Double.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText());
 
-        if (details.tssfEstimatedConcentrationOfTestSample_text == null || tssfEstimatedConcentrationOfTestSampleTxt.getText() == "") {
+        if (details.tssfEstimatedConcentrationOfTestSample_text == null) {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
-        } else if (Integer.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()) <= 0) {
+        } else if (details.tssfEstimatedConcentrationOfTestSample_text <= 0) {
             JOptionPane.showMessageDialog(buttonPanel, "Estimated concentration of Test Sample (mg/mL) cannot be empty ");
-        } else if (tssfEstimatedConcentrationOfTestSampleTxt.getText() != null && Integer.valueOf(tssfEstimatedConcentrationOfTestSampleTxt.getText()) > 0) {
-            double tssfFinalConcentration_txt = Double.parseDouble(tssfFinalConcentrationTxt.getText());
-            double tssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(tssfEstimatedConcentrationOfTestSampleTxt.getText());
-            double output = (1000 * tssfFinalConcentration_txt) / tssfEstimatedConcentrationOfTestSample_txt;
-            tssfVolumeOfSampleLabel.setText(String.valueOf(output));
-            tssfVolumeOf2XRSOBLabel.setText(String.valueOf(1000 - output));
+        } else if (details.tssfEstimatedConcentrationOfTestSample_text != null && details.tssfEstimatedConcentrationOfTestSample_text > 0) {
+            details.tssfFinalConcentration_txt = Double.parseDouble(tssfFinalConcentrationTxt.getText());
+            details.tssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(tssfEstimatedConcentrationOfTestSampleTxt.getText());
+            details.tssfoutput = (1000 * details.tssfFinalConcentration_txt) / details.tssfEstimatedConcentrationOfTestSample_txt;
+            tssfVolumeOfSampleLabel.setText(String.valueOf(details.tssfoutput));
+            tssfVolumeOf2XRSOBLabel.setText(String.valueOf(1000 - details.tssfoutput));
         }
     }
 
     public void rssfFieldsUpdate() {
+        //todo focus
+        details.rssfConcentrationOfRefernceStndard_text = Double.valueOf(rssfConcentrationOfRefernceStndardTxt.getText());
+
         if (rssfConcentrationOfRefernceStndardTxt.getText() == null || rssfConcentrationOfRefernceStndardTxt.getText() == "") {
             JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) <= 0) {
             JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be Negative ");
         } else if (rssfConcentrationOfRefernceStndardTxt.getText() != null && Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) > 0) {
-            double rssfFinalConcentration_txt = Double.parseDouble(rssfFinalConcentrationTxt.getText());
-            double rssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(rssfConcentrationOfRefernceStndardTxt.getText());
-            double output = (1000 * rssfFinalConcentration_txt) / rssfEstimatedConcentrationOfTestSample_txt;
-            rssfVolumeOfSampleLabel.setText(String.valueOf(output));
-            rssfVolumeOf2XRSOBLabel.setText(String.valueOf(1000 - output));
+            details.rssfFinalConcentration_txt = Double.parseDouble(rssfFinalConcentrationTxt.getText());
+            details.rssfEstimatedConcentrationOfTestSample_txt = Double.parseDouble(rssfConcentrationOfRefernceStndardTxt.getText());
+            details.rssfoutput = (1000 * details.rssfFinalConcentration_txt) / details.rssfEstimatedConcentrationOfTestSample_txt;
+            rssfVolumeOfSampleLabel.setText(String.valueOf(details.rssfoutput));
+            rssfVolumeOf2XRSOBLabel.setText(String.valueOf(1000 - details.rssfoutput));
         } else if (rssfConcentrationOfRefernceStndardTxt.getText() == null) {
             JOptionPane.showMessageDialog(buttonPanel, "Concentration of Reference Standard (mg/mL) cannot be empty ");
         } else if (Integer.valueOf(rssfConcentrationOfRefernceStndardTxt.getText()) <= 0) {
