@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+import static com.example.incisivelab.HelloApplication.details;
 import static com.example.incisivelab.HelloApplication.stage;
 
 public class MassCorrectionPageController {
@@ -165,8 +166,16 @@ public class MassCorrectionPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        HelloApplication.backNavigation = false;
+
+        //Don't change these two lines
         finalNormalisedToDilutionTable = normalisedToDilutionTable;
         finalMassCorrectionTable = massCorrectionTable;
+
+        //Add Mass Correction Table and Dilution Table to Gel Run Object
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setMassCorrectionDataTableView(finalMassCorrectionTable);
+        details.getGelRunArrayList().get(LaneContentsPageController.currentIterativeRunTime).setNormalisedToDilutionDataTableView(finalNormalisedToDilutionTable);
+
         FXMLLoader fxmlLoader = new FXMLLoader(MassCorrectionPageController.class.getResource("protein-concentration-page.fxml"));
 
         //Set the stage with the new scene
@@ -177,6 +186,8 @@ public class MassCorrectionPageController {
     }
 
     public void onBackButtonClick(ActionEvent actionEvent)  throws IOException{
+        HelloApplication.backNavigation = true;
+
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageOneController.class.getResource("raw-data-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
         stage.setTitle("Incisive Lab");

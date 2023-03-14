@@ -157,6 +157,11 @@ public class LinearityPageController {
     }
 
     public void onNextButtonClick(ActionEvent actionEvent) throws IOException {
+        //Increment iterative run time (gel run)
+        LaneContentsPageController.currentIterativeRunTime++;
+        //TODO Navigate to lane content page
+
+        //Dummy navigation to final screen
         FXMLLoader fxmlLoader = new FXMLLoader(DetailsPageTwoController.class.getResource("final-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1178, 700);
         stage.setTitle("Incisive Lab");
